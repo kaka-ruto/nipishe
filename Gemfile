@@ -41,6 +41,7 @@ gem 'pundit'
 
 # API
 gem 'graphql'
+gem 'graphiql-rails'
 
 # Factories
 gem 'factory_bot_rails'
