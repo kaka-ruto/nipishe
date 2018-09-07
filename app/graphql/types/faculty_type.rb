@@ -7,5 +7,6 @@ module Types
 
     field :id, !types.ID
     field :name, !types.String
+    field :date_of_opening, types.String
   end
 end

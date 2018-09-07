@@ -44,7 +44,7 @@ gem 'dotenv-rails', groups: %i[development test], require: 'dotenv/rails-now'
 
 group :development, :test do
   # Debugging
-  gem 'pry-rails'
+  gem 'jazz_hands'
 
   # Testing
   gem 'rspec-rails'

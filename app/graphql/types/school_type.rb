@@ -11,10 +11,10 @@ module Types
     field :year_of_founding, types.String
 
     field :faculties do
-      type !types[Types::FacultyType]
+      type types[Types::FacultyType]
       description 'Get all faculties belonging to this school'
 
-      resolve ->(obj, _args, _ctx) { obj.faculties }
+      resolve ->(school, _args, _ctx) { school.faculties }
     end
   end
 end
