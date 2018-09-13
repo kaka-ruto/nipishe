@@ -3,7 +3,7 @@
 module Mutations
   SchoolMutation = GraphQL::ObjectType.define do
     name 'SchoolMutation'
-    description 'Mutation types for schools'
+    description 'Creating, Editing and Deleting Schools'
 
     field :create_school, Types::SchoolType, 'Create a school' do
       argument :name, !types.String
@@ -24,7 +24,7 @@ module Mutations
 
         args = {
           name: args[:name]
-        }.to_h
+        }
 
         school.update!(args)
 
@@ -34,13 +34,12 @@ module Mutations
 
     field :delete_school, Types::SchoolType, 'Delete a school' do
       argument :id, !types.ID
-      argument :name, types.String
 
       resolve ->(_obj, args, _ctx) do
         school = School.find(args[:id])
         school.destroy!
 
-        'School has been successfully deleted.'
+        'School has been successfully deleted'
       end
     end
   end
