@@ -48,8 +48,8 @@ gem 'factory_bot_rails'
 gem 'faker'
 
 group :development, :test do
-  # Debugging
-  gem 'pry-rails'
+# Debugging
+  gem 'jazz_hands'
 
   # Testing
   gem 'rspec-rails'

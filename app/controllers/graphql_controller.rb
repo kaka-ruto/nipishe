@@ -1,6 +1,6 @@
-class GraphqlController < ApplicationController
-  before_action :authenticate_by_api_token
+# frozen_string_literal: true
 
+class GraphqlController < ApplicationController
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
