@@ -3,7 +3,7 @@
 module Types
   module Inputs
     module Users
-      UserLoginInputType = GraphQL::InputObjectType.define do
+      Login = GraphQL::InputObjectType.define do
         name 'UserLoginData'
         description 'Properties for signing in an existing user'
 

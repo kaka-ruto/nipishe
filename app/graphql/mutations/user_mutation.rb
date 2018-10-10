@@ -5,7 +5,7 @@ module Mutations
     name 'UserMutation'
     description 'Creating, Editing, Deleting, Signing in users'
 
-    field :create_user, function: Resolvers::Users::Create.new
-    field :sign_in_user, function: Resolvers::SignInUserResolver.new
+    field :register_user, function: Resolvers::Users::Register.new
+    field :login_user, function: Resolvers::Users::Login.new
   end
 end

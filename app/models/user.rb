@@ -32,7 +32,18 @@
 #
 
 class User < ApplicationRecord
+  include DeviseTokenAuth::Concerns::User
+  # Include default devise modules.
+  devise  :database_authenticatable, :registerable, :validatable,
+          :recoverable, :rememberable, :trackable #:confirmable
+
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true, uniqueness: true
+
+  def generate_auth_token
+    auth_token = create_new_auth_token
+    update_columns(tokens: auth_token)
+
+    auth_token
+  end
 end

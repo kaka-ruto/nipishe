@@ -5,6 +5,6 @@ module Types
     name 'AuthType'
     description 'Returns token after successful authentication'
 
-    field :api_token, !types.String
+    field :tokens, !types.String
   end
 end

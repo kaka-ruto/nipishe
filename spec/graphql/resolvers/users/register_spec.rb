@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Resolvers::Users::Create do
+RSpec.describe Resolvers::Users::Register do
   let(:resolve) { described_class.new }
   let(:user) { resolve.call(nil, args, nil) }
 

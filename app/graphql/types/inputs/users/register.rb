@@ -3,8 +3,8 @@
 module Types
   module Inputs
     module Users
-      Create = GraphQL::InputObjectType.define do
-        name 'Create'
+      Register = GraphQL::InputObjectType.define do
+        name 'UserRegistrationData'
         description 'Properties for registering a new user'
 
         argument :first_name, !types.String

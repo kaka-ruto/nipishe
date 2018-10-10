@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Types::Inputs::Users::UserCreationInputType do
+RSpec.describe Types::Inputs::Users::Register do
   subject(:user) { described_class }
 
   let(:types) { GraphQL::Define::TypeDefiner.instance }
