@@ -2,7 +2,7 @@
 
 RSpec.describe Resolvers::Users::Register do
   let(:resolve) { described_class.new }
-  let(:user) { resolve.call(nil, args, nil) }
+  let(:result) { resolve.call(nil, args, nil) }
 
   describe 'Success' do
     let(:args) do
@@ -16,8 +16,9 @@ RSpec.describe Resolvers::Users::Register do
       }
     end
 
-    it { expect(user.persisted?).to eq(true) }
-    it { expect(user.first_name).to eq('Ava') }
+    it { expect(result.user.persisted?).to eq(true) }
+    it { expect(result.user.first_name).to eq('Ava') }
+    it { expect(result.auth_token).not_to be_nil }
   end
 
   describe 'Failure' do
@@ -32,6 +33,6 @@ RSpec.describe Resolvers::Users::Register do
       }
     end
 
-    it { expect(user.message).to eq("Invalid attributes for User: Password can't be blank") }
+    it { expect(result.message).to eq("Invalid attributes for User: Password can't be blank") }
   end
 end
