@@ -2,6 +2,7 @@
 
 class GraphqlController < ApplicationController
   def execute
+    binding.pry
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
@@ -13,6 +14,7 @@ class GraphqlController < ApplicationController
       context: context,
       operation_name: operation_name
     )
+
     render json: result
   rescue => e
     raise e unless Rails.env.development?
