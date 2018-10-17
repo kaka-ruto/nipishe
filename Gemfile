@@ -29,11 +29,18 @@ gem 'puma', '~> 3.11'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+# Cross-Origin Resource Sharing (CORS)
+gem 'rack-cors'
+
+# ------------------------------------- #
+# FUNCTIONALITY
+# Authentication and Authorization
+gem 'devise_token_auth'
+gem 'pundit'
 
 # API
 gem 'graphql'
+gem 'graphiql-rails'
 
 # Factories
 gem 'factory_bot_rails'
@@ -43,7 +50,7 @@ gem 'faker'
 gem 'dotenv-rails', groups: %i[development test], require: 'dotenv/rails-now'
 
 group :development, :test do
-  # Debugging
+# Debugging
   gem 'jazz_hands'
 
   # Testing
@@ -55,8 +62,10 @@ group :development, :test do
 end
 
 group :development do
-  # API
-  gem 'graphiql-rails'
+  # Debugging
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

@@ -1,4 +1,4 @@
-rquire: rubocop-rspec
+require: rubocop-rspec
 
 Style/Lambda:
   EnforcedStyle: literal
