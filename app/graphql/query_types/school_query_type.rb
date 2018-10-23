@@ -3,18 +3,9 @@
 module QueryTypes
   SchoolQueryType = GraphQL::ObjectType.define do
     name 'SchoolQueryType'
-    description 'Querytypes for schools'
+    description 'Know all schools in the world'
 
-    field :schools, types[Types::SchoolType], 'Get all schools' do
-      resolve ->(_obj, _args, _ctx) { School.all }
-    end
-
-    field :school, Types::SchoolType, 'Get one school' do
-      argument :id, !types.ID
-
-      resolve ->(_obj, args, _ctx) {
-        School.find(args[:id])
-      }
-    end
+    field :get_schools, function: Resolvers::Schools::GetSchools.new
+    field :get_school, function: Resolvers::Schools::GetSchool.new
   end
 end

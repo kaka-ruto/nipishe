@@ -1,4 +1,10 @@
 require: rubocop-rspec
 
+AllCops:
+  Exclude:
+    - 'db/**/*'
+
 Style/Lambda:
   EnforcedStyle: literal
+Metrics/LineLength:
+  Max: 100

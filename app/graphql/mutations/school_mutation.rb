@@ -5,15 +5,7 @@ module Mutations
     name 'SchoolMutation'
     description 'Creating, Editing and Deleting Schools'
 
-    field :create_school, Types::SchoolType, 'Create a school' do
-      argument :name, !types.String
-
-      resolve ->(_obj, args, _ctx) do
-        School.create(
-          name: args[:name]
-        )
-      end
-    end
+    field :create_school, function: Resolvers::Schools::CreateSchool.new
 
     field :edit_school, Types::SchoolType, 'Edit a school' do
       argument :id, !types.ID

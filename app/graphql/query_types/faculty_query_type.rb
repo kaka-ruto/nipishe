@@ -2,8 +2,8 @@
 
 module QueryTypes
   FacultyQueryType = GraphQL::ObjectType.define do
-    name 'Faculty'
-    description 'Query types for faculties'
+    name 'FacultyQueryType'
+    description 'Querying faculties'
 
     field :faculties do
       type types[Types::FacultyType]
@@ -19,5 +19,8 @@ module QueryTypes
 
       resolve ->(_obj, args, _ctx) { Faculty.find(args[:id]) }
     end
+
+    # field :get_faculties, function: Resolvers::Faculties::GetFaculties.new
+    # field :get_faculties, function: Resolvers::Faculties::GetFaculty.new
   end
 end

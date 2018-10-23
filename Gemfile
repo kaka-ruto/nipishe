@@ -37,6 +37,7 @@ gem 'rack-cors'
 # Authentication and Authorization
 gem 'devise_token_auth'
 gem 'pundit'
+gem 'graphql-guard'
 
 # API
 gem 'graphql'

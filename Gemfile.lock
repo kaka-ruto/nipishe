@@ -95,6 +95,8 @@ GEM
       railties
       sprockets-rails
     graphql (1.8.10)
+    graphql-guard (1.2.0)
+      graphql (>= 1.6.0, < 2)
     grit (2.5.0)
       diff-lcs (~> 1.1)
       mime-types (~> 1.15)
@@ -275,6 +277,7 @@ DEPENDENCIES
   faker
   graphiql-rails
   graphql
+  graphql-guard
   jazz_hands
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
