@@ -3,10 +3,21 @@
 module Resolvers
   module Schools
     class GetSchools < GraphQL::Function
-      type types[Types::SchoolType]
+      type Types::Objects::Schools::SchoolObject
+      type ![String]
 
       def call(_obj, _args, _ctx)
-        School.all
+        schools = School.all # later, find only schools created by user
+
+        {
+          school: schools,
+          errors: []
+        }
+      rescue ActiveRecord::RecordNotFound => err
+        {
+          school: nil,
+          errors: err.to_s
+        }
       end
     end
   end

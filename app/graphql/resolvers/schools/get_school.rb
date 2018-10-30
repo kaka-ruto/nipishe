@@ -5,10 +5,21 @@ module Resolvers
     class GetSchool < GraphQL::Function
       argument :id, !types.ID
 
-      type Types::SchoolType
+      type Types::Objects::Schools::SchoolObject
+      type ![String]
 
       def call(_obj, args, _ctx)
-        School.find(args[:id])
+        school = School.find(args[:id])
+
+        {
+          school: school,
+          errors: []
+        }
+      rescue ActiveRecord::RecordNotFound => err
+        {
+          school: nil,
+          errors: err.to_s
+        }
       end
     end
   end

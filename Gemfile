@@ -52,7 +52,7 @@ gem 'dotenv-rails', groups: %i[development test], require: 'dotenv/rails-now'
 
 group :development, :test do
 # Debugging
-  gem 'jazz_hands'
+  gem 'pry-rails'
 
   # Testing
   gem 'rspec-rails'

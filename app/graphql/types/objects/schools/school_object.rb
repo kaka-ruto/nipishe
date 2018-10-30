@@ -3,7 +3,7 @@
 module Types
   module Objects
     module Schools
-      class SchoolObject < BaseObject
+      class SchoolObject < Types::BaseObject
         description 'How one school looks like when returned'
 
         field :id, ID, null: false
