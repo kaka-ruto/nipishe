@@ -25,7 +25,7 @@ module Resolvers
         OpenStruct.new(
           auth_token: auth_token,
           user: resource,
-          message: 'Successful Sign Up'
+          message: ''
         ) # status: 302 temporary redirection to /secured
       end
     end
