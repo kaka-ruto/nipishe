@@ -47,12 +47,16 @@ gem 'graphiql-rails'
 gem 'factory_bot_rails'
 gem 'faker'
 
+# Services
+gem 'interactor-rails'
+
 # Data handling
 gem 'dotenv-rails', groups: %i[development test], require: 'dotenv/rails-now'
 
 group :development, :test do
 # Debugging
   gem 'pry-rails'
+  gem 'pry-nav'
 
   # Testing
   gem 'rspec-rails'

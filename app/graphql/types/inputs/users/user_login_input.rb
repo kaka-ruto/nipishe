@@ -3,12 +3,11 @@
 module Types
   module Inputs
     module Users
-      Login = GraphQL::InputObjectType.define do
-        name 'UserLoginData'
+      class UserLoginInput < BaseInputObject
         description 'Properties for signing in an existing user'
 
-        argument :email, !types.String
-        argument :password, !types.String
+        argument :email, String, required: true
+        argument :password, String, required: true
       end
     end
   end
