@@ -2,14 +2,15 @@
 
 module Auth
   class LoginUser < BaseInteractor
-    delegate :email, :password, to: :context
+    delegate :attributes, to: :context
 
     def call
-      user = User.find_by(email: email)
+      user = User.find_by(email: attributes[:email])
 
       if user
-        if user.authenticate(password)
-          auth_token = JsonWebToken.encode(user_id: user.id)
+        if user.authenticate(attributes[:password])
+          context.user = user
+          context.auth_token = JsonWebToken.encode(user_id: user.id)
         else
           context.fail! error: 'Invalid password'
         end
@@ -17,10 +18,10 @@ module Auth
         context.fail! error: 'User not found'
       end
 
-      context.user_object = {
-        user: user,
-        auth_token: auth_token
-      }
+      OpenStruct.new(
+        user: context.user,
+        auth_token: context.auth_token
+      )
     end
   end
 end

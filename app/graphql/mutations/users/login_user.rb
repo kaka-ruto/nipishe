@@ -2,6 +2,7 @@
 
 module Mutations
   module Users
+    # This class initiates the user login process
     class LoginUser < Mutations::BaseMutation
       argument :attributes, Types::Inputs::Users::UserLoginInput, required: true
 
@@ -9,26 +10,20 @@ module Mutations
       field :errors, [String], null: false
 
       def resolve(attributes:)
-        binding.pry
-        user = User.find_for_database_authentication(email: attributes[:email])
-        # Try User.find_by!
-        user ||= User.new
+        user_object = Auth::LoginUser.call!(attributes: attributes)
 
-        if user.valid_password?(attributes[:password])
-          {
-            user: user,
-            message: 'Successful Login',
-            errors: []
-          }
-        else
-          errors = user.errors.full_messages
-
-          {
-            user: user,
-            message: 'Login Unsuccessful',
-            errors: errors
-          }
-        end
+        OpenStruct.new(
+          user: user_object[:user],
+          auth_token: user_object[:auth_token],
+          message: 'Successful Login',
+          errors: []
+        )
+      rescue Interactor::Failure => e
+        OpenStruct.new(
+          user: nil,
+          message: 'Login Unsuccessful',
+          errors: e.context.error
+        )
       end
     end
   end

@@ -1,25 +1,22 @@
 # frozen_string_literal: true
 
 RSpec.describe Mutations::Users::LoginUser do
-  let(:subject) { described_class.new(object: nil, context: nil) }
-  let(:result) { subject.resolve(attributes) }
-  # let(:user) { User.create!(signup_attributes[:attributes].to_h) }
+  subject(:context) do
+    described_class.new(object: nil, context: nil).resolve(attributes)
+  end
+
+  let!(:user) { User.create!(signup_attributes.to_h) }
+  let(:headers) { valid_headers.except('Authorization') }
   let(:signup_attributes) do
     {
-      attributes: {
-        first_name: 'Ava',
-        last_name: 'Mcclure',
-        email: 'ava.mcclure@gmail.com',
-        password: '[Omitted]'
-      }
+      first_name: 'Ava',
+      last_name: 'Mcclure',
+      email: 'ava.mcclure@gmail.com',
+      password: '[Omitted]'
     }
   end
 
   describe 'Success' do
-    before do
-      User.create!(signup_attributes[:attributes].to_h)
-    end
-
     context 'when login attributes are valid' do
       let(:attributes) do
         {
@@ -30,17 +27,25 @@ RSpec.describe Mutations::Users::LoginUser do
         }
       end
 
-      it { expect(result[:errors]).to be_empty }
-      it { expect(result[:user][:tokens]).to be_empty }
-      it { expect(result[:message]).to eq('Successful Login') }
+      it 'returns the user' do
+        expect(context[:user]).to eq(user)
+      end
+
+      it 'returns the auth token' do
+        expect(context[:auth_token]).not_to be_nil
+      end
+
+      it 'returns a success message' do
+        expect(context[:message]).to eq('Successful Login')
+      end
+
+      it 'returns an empty errors list' do
+        expect(context[:errors]).to be_empty
+      end
     end
   end
 
   describe 'Failure' do
-    before do
-      User.create!(signup_attributes[:attributes].to_h)
-    end
-
     context 'when one of the passed attributes is invalid' do
       let(:attributes) do
         {
@@ -51,26 +56,17 @@ RSpec.describe Mutations::Users::LoginUser do
         }
       end
 
-      it 'de' do
-        binding.pry
-      end
+      # it 'returns nil user' do
+      #   expect(context[:user]).to eq nil
+      # end
 
-      it { expect(result[:errors]).to eq(["First name can't be blank"]) }
-      it { expect(result[:user][:tokens]).to be_empty }
-      it { expect(result[:message]).to eq('Login Unsuccessful') }
-    end
-
-    context 'when the password is wrong' do
-      let(:attributes) do
-        {
-          attributes: {
-            email: 'ava.mcclure@gmail.com',
-            password: '[Omitted]'
-          }
-        }
-      end
-
-      it { expect(result[:errors]).to eq(["First name can't be blank", "Last name can't be blank"]) }
+      # it 'returns login failed message' do
+      #   expect(context[:message]).to eq('Login Unsuccessful')
+      # end
+      #
+      # it 'returns appropriate error message' do
+      #   expect(context[:error]).to eq('Login Unsuccessful')
+      # end
     end
   end
 end

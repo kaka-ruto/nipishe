@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
+# This class authorizes all API requests, ensuring that they have a valid token and user payload
 class AuthorizeApiRequest < BaseInteractor
-  # before :set_headers
   delegate :headers, to: :context
 
   def call
     context.user ||= User.find(auth_token[:user_id]) if auth_token
-
   rescue ActiveRecord::RecordNotFound => e
     GraphQL::ExecutionError.new(
       "User with that ID not found, #{e.message}"
@@ -13,13 +14,12 @@ class AuthorizeApiRequest < BaseInteractor
     context.user
   end
 
-
   private
 
   def auth_token
     auth_token ||= JsonWebToken.decode(auth_header)
     context.fail!(error: 'Invalid token') unless auth_token
-    # TODO raise Errors::ExceptionHandler::InvalidToken instead
+    # TODO: raise Errors::ExceptionHandler::InvalidToken instead
 
     auth_token
   end
@@ -27,6 +27,6 @@ class AuthorizeApiRequest < BaseInteractor
   def auth_header
     context.fail!(error: 'Missing token') unless headers['Authorization']
 
-    return headers['Authorization']
+    headers['Authorization']
   end
 end
