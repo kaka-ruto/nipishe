@@ -1,60 +1,56 @@
 # frozen_string_literal: true
 
 RSpec.describe Mutations::Users::RegisterUser do
-  let(:subject) { described_class.new(object: nil, context: nil) }
-  let(:result) { subject.resolve(attributes) }
+  subject(:context) do
+    described_class.new(object: nil, context: nil).resolve(signup_attributes)
+  end
+
+  let(:headers) { valid_headers.except('Authorization') }
+  let(:signup_attributes) do
+    {
+      attributes: {
+        first_name: 'Ava',
+        last_name: 'Mcclure',
+        email: 'ava.mcclure@gmail.com',
+        password: '[Omitted]'
+      }
+    }
+  end
+
+  # before do
+  #   allow(Auth::RegisterUser).to receive(:call!)
+  #     .with(attributes: signup_attributes)
+  #     .once
+  # end
 
   describe 'Success' do
-    context 'when the passed attributes are valid' do
-      let(:attributes) do
-        {
-          attributes: {
-            first_name: 'Ava',
-            last_name: 'Mcclure',
-            email: 'ava.mcclure@gmail.com',
-            password: 'Hatahuezikajua'
-          }
-        }
+    context 'when signup attributes are valid' do
+      # it 'calls Auth::RegisterUser' do
+      #   expect(Auth::RegisterUser).to have_received(:call!)
+      #     .with(attributes: signup_attributes)
+      #     .once
+      # end
+
+      it 'returns the created user' do
+        expect(context[:user]).not_to be_nil
       end
 
+      it 'returns an auth token' do
+        expect(context[:auth_token]).not_to be_nil
+      end
 
-      it { expect { result }.to (change { User.count }).from(0).to(1) }
-      it { expect(result[:user]).to be_persisted }
-      it { expect(result[:errors]).to be_empty }
-      it { expect(result[:user][:tokens]).not_to be_nil }
-      it { expect(result[:message]).to eq('Successful Sign Up') }
+      it 'returns a success message' do
+        expect(context[:message]).to eq('Successful Sign Up')
+      end
     end
   end
 
   describe 'Failure' do
-    context 'when one of the passed attributes is invalid' do
-      let(:attributes) do
+    context 'when one of the signup attributes is invalid' do
+      let(:signup_attributes) do
         {
           attributes: {
-            first_name: nil,
-            last_name: 'Mcclure',
-            email: 'ava.mcclure@gmail.com',
-            password: 'Hatahuezikajua'
-          }
-        }
-      end
-
-      it 'me' do
-        binding.pry
-      end
-
-      it { expect { result }.not_to (change { User.count }) }
-      it { expect(result[:user]).not_to be_persisted }
-      it { expect(result[:errors]).to eq(["First name can't be blank"]) }
-      it { expect(result[:user][:tokens]).to be_an_empty_hash }
-      it { expect(result[:message]).to eq('Sign Up Unsuccessful') }
-    end
-
-    context 'when two or more of the passed attributes are invalid' do
-      let(:attributes) do
-        {
-          attributes: {
-            first_name: '',
+            first_name: 'Ava',
             last_name: nil,
             email: 'ava.mcclure@gmail.com',
             password: '[Omitted]'
@@ -62,7 +58,32 @@ RSpec.describe Mutations::Users::RegisterUser do
         }
       end
 
-      it { expect(result[:errors]).to eq(["First name can't be blank", "Last name can't be blank"]) }
+      it "throws a field can't be blank error" do
+        expect(context[:errors]).to eq("Validation failed: Last name can't be blank")
+      end
+
+      it 'returns a sign up unsuccessful message' do
+        expect(context[:message]).to eq('Sign Up Unsuccessful')
+      end
+    end
+
+    context 'when password is invalid' do
+      let(:signup_attributes) do
+        {
+          attributes: {
+            first_name: 'Ava',
+            last_name: 'Mcclure',
+            email: 'ava.mcclure@gmail.com',
+            password: ''
+          }
+        }
+      end
+
+      it 'returns password failure errors' do
+        # TODO: Check why two password error messages are being returned
+        expect(context[:errors])
+          .to match("Validation failed: Password can't be blank, Password digest can't be blank")
+      end
     end
   end
 end

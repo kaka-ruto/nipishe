@@ -2,6 +2,7 @@
 
 module Mutations
   module Users
+    # This class initiates the user signup process
     class RegisterUser < Mutations::BaseMutation
       argument :attributes, Types::Inputs::Users::UserRegistrationInput, required: true
 
@@ -9,25 +10,20 @@ module Mutations
       field :errors, [String], null: false
 
       def resolve(attributes:)
-        user = User.create(attributes.to_h)
+        user_object = Auth::RegisterUser.call!(attributes: attributes)
 
-        if user.save
-          auth_token = user.generate_auth_token
-
-          {
-            user: user,
-            message: 'Successful Sign Up',
-            errors: []
-          }
-        else
-          errors = user.errors.full_messages
-
-          {
-            user: user,
-            message: 'Sign Up Unsuccessful',
-            errors: errors
-          }
-        end
+        OpenStruct.new(
+          user: user_object[:user],
+          auth_token: user_object[:auth_token],
+          message: 'Successful Sign Up',
+          errors: []
+        )
+      rescue Interactor::Failure => e
+        OpenStruct.new(
+          user: nil,
+          message: 'Sign Up Unsuccessful',
+          errors: e.context.error
+        )
       end
     end
   end
