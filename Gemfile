@@ -44,7 +44,7 @@ gem 'graphql'
 gem 'graphiql-rails'
 
 # Factories
-gem 'factory_bot_rails'
+gem 'factory_bot_rails', :require => false
 gem 'faker'
 
 # Services

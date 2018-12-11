@@ -22,6 +22,12 @@ class GraphqlController < ApplicationController
 
   private
 
+  def current_user
+    AuthorizeApiRequest.call!(headers: request.headers)
+  rescue Interactor::Failure => e
+    nil
+  end
+
   # Handle form data, JSON body, or a blank value
   def ensure_hash(ambiguous_param)
     case ambiguous_param

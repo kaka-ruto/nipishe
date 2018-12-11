@@ -23,8 +23,6 @@ ActiveRecord::Schema.define(version: 2018_10_04_011840) do
     t.string "phone_number"
     t.string "gender"
     t.string "date_of_birth"
-    t.string "provider", default: "email", null: false
-    t.string "uid", default: "", null: false
     t.string "password_digest", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -42,7 +40,6 @@ ActiveRecord::Schema.define(version: 2018_10_04_011840) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
 end

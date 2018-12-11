@@ -22,7 +22,7 @@ module Mutations
         OpenStruct.new(
           user: nil,
           message: 'Sign Up Unsuccessful',
-          errors: e.context.error
+          errors: [e.context.error]
         )
       end
     end

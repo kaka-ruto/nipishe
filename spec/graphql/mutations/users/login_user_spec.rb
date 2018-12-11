@@ -2,7 +2,7 @@
 
 RSpec.describe Mutations::Users::LoginUser do
   subject(:context) do
-    described_class.new(object: nil, context: nil).resolve(attributes)
+    described_class.new(object: nil, context: user).resolve(attributes)
   end
 
   let!(:user) { User.create!(signup_attributes.to_h) }

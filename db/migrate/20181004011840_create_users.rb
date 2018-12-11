@@ -10,10 +10,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :gender
       t.string :date_of_birth
 
-      ## Required
-      t.string :provider, :null => false, :default => "email"
-      t.string :uid, :null => false, :default => ""
-
       ## Database authenticatable
       t.string :password_digest, :null => false, :default => ""
 
@@ -46,7 +42,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
     end
 
     add_index :users, :email,                unique: true
-    add_index :users, [:uid, :provider],     unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,       unique: true

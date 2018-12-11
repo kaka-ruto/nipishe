@@ -2,7 +2,7 @@
 
 module Types
   module Mutation
-    class Users < Types::BaseObject
+    class UserMutations < Types::BaseObject
       field :register_user, mutation: Mutations::Users::RegisterUser
       field :login_user, mutation: Mutations::Users::LoginUser
     end
