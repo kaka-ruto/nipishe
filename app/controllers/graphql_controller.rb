@@ -23,6 +23,7 @@ class GraphqlController < ApplicationController
   private
 
   def current_user
+    binding.pry
     AuthorizeApiRequest.call!(headers: request.headers)
   rescue Interactor::Failure => e
     nil
