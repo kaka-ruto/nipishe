@@ -3,7 +3,7 @@
 module Queries
   module Users
     # Class that gets one user's profile info
-    class UserProfile < Queries::Base
+    class GetUserProfile < Queries::Base
       argument :id, ID, required: true
 
       type Types::Objects::Users::UserProfile, null: false
@@ -12,7 +12,7 @@ module Queries
       def resolve(id:)
         # binding.pry
         # if context[:current_user]
-        user = ::Users::GetUser.call!(id: id).user
+        user = ::Users::GetUserProfile.call!(id: id).user
 
         user
 

@@ -26,7 +26,7 @@ class GraphqlController < ApplicationController
     binding.pry
     AuthorizeApiRequest.call!(headers: request.headers)
   rescue Interactor::Failure => e
-    nil
+    'Failed to authenticate'
   end
 
   # Handle form data, JSON body, or a blank value

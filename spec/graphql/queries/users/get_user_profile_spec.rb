@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Queries::Users::UserProfile do
+RSpec.describe Queries::Users::GetUserProfile do
   subject(:profile) do
     described_class.new(object: nil, context: user).resolve(id: user_id)
   end
