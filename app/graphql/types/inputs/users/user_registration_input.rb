@@ -3,6 +3,7 @@
 module Types
   module Inputs
     module Users
+      # Contains fields required to sign up
       class UserRegistrationInput < BaseInputObject
         description 'Properties for registering a new user'
 

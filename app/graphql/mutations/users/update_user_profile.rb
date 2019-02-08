@@ -5,30 +5,25 @@ module Mutations
     # Class that update's a user's profile info
     class UpdateUserProfile < Mutations::BaseMutation
       argument :id, ID, required: true
-      argument :attributes, ID, required: true
+      argument :attributes, Types::Inputs::Users::ProfileUpdate, required: true
 
       field :user, Types::Objects::Users::UserObject, null: true
       field :errors, [String], null: false
 
       def resolve(id:, attributes:)
-        # binding.pry
-        if context[:current_user] # Use this instead of passing the user id
-          update_user = ::Users::UpdateUserProfile.call!(id: id, attributes: attributes)
+        if context[:current_user].id == id
+          update_user = ::Users::UpdateUserProfile.call!(
+            user: context[:current_user], attributes: attributes
+          )
 
-          if update_user.success?
-            {
-              user: update_user.user,
-              errors: []
-            }
-          else
-            {
-              user: nil,
-              errors: errors
-            }
-          end
+          OpenStruct.new(
+            user: update_user.user,
+            message: 'Profile Successfuly Updated',
+            errors: []
+          )
         else
           {
-            error: 'Authentication required'
+            errors: ['Authentication required']
           }
         end
 
