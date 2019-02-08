@@ -23,10 +23,9 @@ class GraphqlController < ApplicationController
   private
 
   def current_user
-    binding.pry
-    AuthorizeApiRequest.call!(headers: request.headers)
+    AuthorizeApiRequest.call!(headers: request.headers).user
   rescue Interactor::Failure => e
-    'Failed to authenticate'
+    nil # Context is nil if we have no user
   end
 
   # Handle form data, JSON body, or a blank value

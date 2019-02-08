@@ -10,11 +10,11 @@ module Queries
       # type [String], null: false # Find a way to return errors also
 
       def resolve(id:)
-        # binding.pry
-        # if context[:current_user]
-        user = ::Users::GetUserProfile.call!(id: id).user
-
-        user
+        if context[:current_user].id == id
+          ::Users::GetUserProfile.call!(id: id).user
+        else
+          raise GraphQL::ExecutionError, 'You are not allowed'
+        end
 
       rescue Interactor::Failure => e
         # This does not work since we are not returning any Type error, we're only returning a user

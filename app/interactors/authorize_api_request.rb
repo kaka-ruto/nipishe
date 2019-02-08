@@ -6,13 +6,13 @@ class AuthorizeApiRequest < BaseInteractor
   delegate :headers, to: :context
 
   def call
-    current_user ||= User.find(auth_token[:user_id]) if auth_token
+    context.user ||= User.find(auth_token[:user_id]) if auth_token
   rescue ActiveRecord::RecordNotFound => e
     GraphQL::ExecutionError.new(
       "User with that ID not found, #{e.message}"
     )
 
-    context.user = current_user
+    context.user
   end
 
   private

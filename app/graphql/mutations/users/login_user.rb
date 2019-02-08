@@ -10,7 +10,6 @@ module Mutations
       field :errors, [String], null: false
 
       def resolve(attributes:)
-        binding.pry
         user_object = Auth::LoginUser.call!(attributes: attributes)
 
         OpenStruct.new(
