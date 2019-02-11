@@ -34,10 +34,15 @@ RSpec.describe Mutations::Users::Register do
 
   describe 'Failure' do
     context 'when registration fails' do
-      before do
-        allow(Interactors::Users::Register).to receive(:call!)
-          .with(attributes: signup_attributes)
-          .and_return(Interactor::Failure)
+      let(:signup_attributes) do
+        {
+          attributes: {
+            first_name: 'Ava',
+            last_name: 'Mcclure',
+            email: '',
+            password: '[Omitted]'
+          }
+        }
       end
 
       it 'returns a sign up unsuccessful message' do

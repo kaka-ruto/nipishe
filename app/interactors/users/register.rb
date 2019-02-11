@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Auth
+module Users
   # This class the logic for registering a new user
   class Register < BaseInteractor
     delegate :attributes, to: :context

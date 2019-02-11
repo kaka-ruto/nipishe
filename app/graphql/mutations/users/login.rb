@@ -10,7 +10,7 @@ module Mutations
       field :errors, [String], null: false
 
       def resolve(attributes:)
-        user_object = Interactors::Users::Login.call!(attributes: attributes)
+        user_object = ::Users::Login.call!(attributes: attributes)
 
         OpenStruct.new(
           user: user_object[:user],

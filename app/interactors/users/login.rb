@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Auth
+module Users
   class Login < BaseInteractor
     delegate :attributes, to: :context
 
