@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Users::GetUserProfile, type: :interactor do
+RSpec.describe Users::GetProfile, type: :interactor do
   subject(:context) { described_class.call(id: user_id) }
 
   let(:user) { create(:user) }

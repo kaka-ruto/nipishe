@@ -2,7 +2,7 @@
 
 module Users
   # Class that gets a single user by ID
-  class GetUserProfile < BaseInteractor
+  class GetProfile < BaseInteractor
     delegate :id, to: :context
 
     def call

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Auth::RegisterUser, type: :interactor do
+RSpec.describe Users::Register, type: :interactor do
   subject(:context) { described_class.call(attributes: signup_attributes) }
 
   describe 'Success' do
@@ -36,6 +36,25 @@ RSpec.describe Auth::RegisterUser, type: :interactor do
   end
 
   describe 'failure' do
+    context 'when password is invalid' do
+      let(:signup_attributes) do
+        {
+          attributes: {
+            first_name: 'Ava',
+            last_name: 'Mcclure',
+            email: 'ava.mcclure@gmail.com',
+            password: ''
+          }
+        }
+      end
+
+      it 'returns password failure errors' do
+        # TODO: Check why two password error messages are being returned
+        expect(context[:errors])
+          .to match("Validation failed: Password can't be blank, Password digest can't be blank")
+      end
+    end
+
     context 'when signup email is invalid' do
       # TODO: validate email
       let(:signup_attributes) do

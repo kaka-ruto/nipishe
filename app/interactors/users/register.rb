@@ -2,7 +2,7 @@
 
 module Auth
   # This class the logic for registering a new user
-  class RegisterUser < BaseInteractor
+  class Register < BaseInteractor
     delegate :attributes, to: :context
 
     def call

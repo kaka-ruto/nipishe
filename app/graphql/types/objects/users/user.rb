@@ -3,7 +3,7 @@
 module Types
   module Objects
     module Users
-      class UserObject < Types::BaseObject
+      class User < Types::BaseObject
         description 'Properties returned when one user is queried'
 
         field :id, ID, null: false

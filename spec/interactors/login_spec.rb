@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Auth::LoginUser, type: :interactor do
+RSpec.describe Users::Login, type: :interactor do
   subject(:context) { described_class.call(attributes: login_attributes) }
 
   let(:signup_attributes) do

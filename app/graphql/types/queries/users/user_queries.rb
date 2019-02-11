@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module Types
-  module Query
-    class UserQueries < Types::BaseObject
+  module Queries
+    class Users < Types::BaseObject
       # I would be good to do as below
-      field :user_profile, resolver: Queries::Users::GetUserProfile
+      field :profile, resolver: Queries::Users::GetProfile
 
       # OR
       # field :user_profile, Types::Objects::Users::UserProfile, null: false do

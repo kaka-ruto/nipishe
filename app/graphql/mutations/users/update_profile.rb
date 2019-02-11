@@ -3,16 +3,16 @@
 module Mutations
   module Users
     # Class that update's a user's profile info
-    class UpdateUserProfile < Mutations::BaseMutation
+    class UpdateProfile < Mutations::BaseMutation
       argument :id, ID, required: true
       argument :attributes, Types::Inputs::Users::ProfileUpdate, required: true
 
-      field :user, Types::Objects::Users::UserObject, null: true
+      field :user, Types::Objects::Users::User, null: true
       field :errors, [String], null: false
 
       def resolve(id:, attributes:)
         if context[:current_user].id == id
-          update_user = ::Users::UpdateUserProfile.call!(
+          update_user = Interactors::Users::UpdateUserProfile.call!(
             user: context[:current_user], attributes: attributes
           )
 

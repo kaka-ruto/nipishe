@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Auth
-  class LoginUser < BaseInteractor
+  class Login < BaseInteractor
     delegate :attributes, to: :context
 
     def call

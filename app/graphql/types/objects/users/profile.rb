@@ -4,7 +4,7 @@ module Types
   module Objects
     module Users
       # Class identifying the fields returned when a user's profile is queried
-      class UserProfile < Types::BaseObject
+      class Profile < Types::BaseObject
         description 'User profile info'
 
         field :id, ID, null: false

@@ -3,14 +3,14 @@
 module Mutations
   module Users
     # This class initiates the user login process
-    class LoginUser < Mutations::BaseMutation
-      argument :attributes, Types::Inputs::Users::UserLoginInput, required: true
+    class Login < Mutations::BaseMutation
+      argument :attributes, Types::Inputs::Users::Login, required: true
 
-      field :user, Types::Objects::Users::UserObject, null: true
+      field :user, Types::Objects::Users::User, null: true
       field :errors, [String], null: false
 
       def resolve(attributes:)
-        user_object = Auth::LoginUser.call!(attributes: attributes)
+        user_object = Interactors::Users::Login.call!(attributes: attributes)
 
         OpenStruct.new(
           user: user_object[:user],

@@ -1,21 +1,31 @@
 # frozen_string_literal: true
+require 'rails_helper'
 
-RSpec.describe Queries::Users::GetUserProfile do
+RSpec.describe Mutations::Users::UpdateProfile do
   subject(:profile) do
-    described_class.new(object: nil, context: user).resolve(id: user_id)
+    # Use context instead of passing the user id
+    described_class.new(object: nil, context: user).resolve(id: user_id, attributes: new_attributes)
   end
 
-  let(:users) { create_list(:user, 2) }
-  let(:user) { users.first }
+  let(:user) { create(:user) }
   let(:headers) { { 'Authorization' => token_generator(user.id) } }
 
   describe '.resolve' do
     # Success
     context 'when the user exists' do
       let(:user_id) { user.id }
+      let(:new_attributes) do
+        {
+          date_of_birth: '00-00-1967',
+          gender: 'Male',
+          last_name: 'Ruto'
+        }
+      end
+
       # before { allow(request).to receive(:headers).and_return(headers) }
 
-      it 'returns the user' do
+      # binding.pry
+      it 'updates the user' do
         expect(profile).to eq(user)
       end
     end
@@ -26,6 +36,10 @@ RSpec.describe Queries::Users::GetUserProfile do
 
       it 'returns a user not found error message' do
         expect(profile[:message]).to eq('User Not Found')
+      end
+
+      it 'dos not update the user' do
+        expect(profile).to eq(user)
       end
     end
   end

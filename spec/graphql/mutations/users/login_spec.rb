@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Mutations::Users::LoginUser do
+RSpec.describe Mutations::Users::Login do
   subject(:context) do
     described_class.new(object: nil, context: user).resolve(attributes)
   end

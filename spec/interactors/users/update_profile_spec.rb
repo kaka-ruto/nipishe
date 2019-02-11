@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Users::UpdateUserProfile, type: :interactor do
+RSpec.describe Users::UpdateProfile, type: :interactor do
   subject(:context) { described_class.call(attributes: new_attributes) }
 
   let(:user) { create(:user) }

@@ -2,7 +2,7 @@
 
 module Users
   # Class that gets a single user by ID
-  class UpdateUserProfile < BaseInteractor
+  class UpdateProfile < BaseInteractor
     delegate :user, :attributes, to: :context
 
     def call
