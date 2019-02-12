@@ -12,27 +12,34 @@ module Mutations
 
       def resolve(id:, attributes:)
         if context[:current_user].id == id
-          update_user = Interactors::Users::UpdateUserProfile.call!(
-            user: context[:current_user], attributes: attributes
-          )
-
-          OpenStruct.new(
-            user: update_user.user,
-            message: 'Profile Successfuly Updated',
-            errors: []
-          )
+          update_profile(attributes)
         else
-          {
-            errors: ['Authentication required']
-          }
+          { errors: ['Authentication required'] }
         end
-
       rescue Interactor::Failure => e
         # This does not work since we are not returning any Type error, we're only returning a user
+        failed_context(e)
+      end
+
+      private
+
+      def update_profile(attributes)
+        user = ::Users::UpdateProfile.call!(
+          user: context[:current_user], attributes: attributes
+        ).user
+
+        OpenStruct.new(
+          user: user,
+          message: 'Profile Successfuly Updated',
+          errors: []
+        )
+      end
+
+      def failed_context(e)
         OpenStruct.new(
           user: nil,
-          message: 'User Not Found',
-          errors: e.context.error
+          message: 'User Update Not Successful',
+          errors: [e.context.error]
         )
       end
     end

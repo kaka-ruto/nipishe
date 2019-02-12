@@ -6,11 +6,10 @@ module Users
     delegate :user, :attributes, to: :context
 
     def call
-      context.user = user.update!(attributes.to_h)
-    rescue ActiveRecord::RecordNotFound => e
-      context.fail! error: e.message
+      # binding.pry
+      user.update!(attributes.to_h)
 
-      context.user
+      user
     end
   end
 end
