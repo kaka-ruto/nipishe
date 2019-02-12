@@ -6,8 +6,9 @@ module Users
     delegate :user, :attributes, to: :context
 
     def call
-      # binding.pry
       user.update!(attributes.to_h)
+    rescue ActiveRecord::RecordInvalid => e
+      context.fail! error: e.message
 
       user
     end

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 RSpec.describe Users::UpdateProfile, type: :interactor do
-  subject(:context) { described_class.call(attributes: new_attributes) }
+  subject(:context) { described_class.call(user: user, attributes: new_attributes) }
 
   let(:user) { create(:user) }
 
   describe '.call' do
     # Success
-    context 'when user ID exists' do
+    context 'when the new attributes are valid' do
       let(:new_attributes) do
         {
           date_of_birth: '00-00-1967',
@@ -22,15 +22,21 @@ RSpec.describe Users::UpdateProfile, type: :interactor do
     end
 
     # Failure
-    context 'when the user does not exist' do
-      let(:user_id) { 10 }
+    context 'when the new attributes are invalid' do
+      let(:new_attributes) do
+        {
+          date_of_birth: '00-00-1967',
+          gender: 'Male',
+          last_name: ''
+        }
+      end
 
       it 'fails context' do
         expect(context).to be_failure
       end
 
-      it 'returns a record not found message' do
-        expect(context[:error]).to eq("Couldn't find User with 'id'=10")
+      it 'raises a RecordInvalid error' do
+        expect(context[:error]).to eq("Validation failed: Last name can't be blank")
       end
     end
   end

@@ -17,7 +17,6 @@ module Mutations
           { errors: ['Authentication required'] }
         end
       rescue Interactor::Failure => e
-        # This does not work since we are not returning any Type error, we're only returning a user
         failed_context(e)
       end
 

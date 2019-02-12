@@ -11,6 +11,7 @@ RSpec.describe Mutations::Users::UpdateProfile do
 
   describe '.resolve' do
     # Success
+    let(:user_id) { user.id }
     let(:new_attributes) do
       {
         date_of_birth: '00-00-1967',
@@ -20,8 +21,6 @@ RSpec.describe Mutations::Users::UpdateProfile do
     end
 
     context 'when the user exists' do
-      let(:user_id) { user.id }
-
       it 'updates the user' do
         expect(profile.user).to have_attributes new_attributes
       end
@@ -37,6 +36,20 @@ RSpec.describe Mutations::Users::UpdateProfile do
 
       it 'does not update the user' do
         expect(user).not_to have_attributes new_attributes
+      end
+    end
+
+    context 'when the new attributes are invalid' do
+      let(:new_attributes) do
+        {
+          date_of_birth: '00-00-1967',
+          gender: 'Male',
+          last_name: ''
+        }
+      end
+
+      it 'returns a User Update Not Successful error message' do
+        expect(profile[:message]).to eq 'User Update Not Successful'
       end
     end
   end
