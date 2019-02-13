@@ -1,6 +1,6 @@
-class GraphqlController < ApplicationController
-  before_action :authenticate_by_api_token
+# frozen_string_literal: true
 
+class GraphqlController < ApplicationController
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
@@ -13,6 +13,7 @@ class GraphqlController < ApplicationController
       context: context,
       operation_name: operation_name
     )
+
     render json: result
   rescue => e
     raise e unless Rails.env.development?
@@ -20,6 +21,12 @@ class GraphqlController < ApplicationController
   end
 
   private
+
+  def current_user
+    AuthorizeApiRequest.call!(headers: request.headers).user
+  rescue Interactor::Failure => e
+    nil # Context is nil if we have no user
+  end
 
   # Handle form data, JSON body, or a blank value
   def ensure_hash(ambiguous_param)

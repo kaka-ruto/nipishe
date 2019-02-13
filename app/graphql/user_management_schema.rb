@@ -1,4 +1,4 @@
 class UserManagementSchema < GraphQL::Schema
-  mutation(Types::MutationType)
-  query(Types::QueryType)
+  mutation(Types::Mutations::Users) # Get all class names in the namespace - Types::Mutation
+  query(Types::Queries::Users) # Foo.constants
 end

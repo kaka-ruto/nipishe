@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-GraphiQL::Rails.config.headers['Authorization'] = -> (context) {
-  p context.request.env
-  "Token #{context.request.env[:devise].current_user.try(:api_token)}"
-}
+if Rails.env.development?
+  GraphiQL::Rails.config.headers['Authorization'] = ->(_ctx) {
+    "bearer #{ENV['JWT_TOKEN']}"
+  }
+end
