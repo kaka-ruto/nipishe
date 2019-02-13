@@ -2,18 +2,16 @@
 
 RSpec.describe Queries::Users::GetProfile do
   subject(:profile) do
-    described_class.new(object: nil, context: user).resolve(id: user_id)
+    described_class.new(object: nil, context: { 'current_user': user }).resolve(id: user_id)
   end
 
   let(:users) { create_list(:user, 2) }
   let(:user) { users.first }
-  let(:headers) { { 'Authorization' => token_generator(user.id) } }
 
   describe '.resolve' do
     # Success
-    context 'when the user exists' do
+    context 'when the user is authenticated' do
       let(:user_id) { user.id }
-      # before { allow(request).to receive(:headers).and_return(headers) }
 
       it 'returns the user' do
         expect(profile).to eq(user)
@@ -21,10 +19,20 @@ RSpec.describe Queries::Users::GetProfile do
     end
 
     # Failure
+    context 'when the user is not authenticated' do
+      let(:user_id) { 10 }
+
+      it 'returns a not allowed error message' do
+        # Failing
+        expect(profile).to raise_error(GraphQL::ExecutionError, 'You are not allowed')
+      end
+    end
+
     context 'when the user is not found' do
       let(:user_id) { 10 }
 
       it 'returns a user not found error message' do
+        # Failing before the interactor is called
         expect(profile[:message]).to eq('User Not Found')
       end
     end

@@ -11,13 +11,11 @@ module Queries
 
       def resolve(id:)
         if context[:current_user].id == id
-          ::Users::GetProfile.call!(id: id).user
+          context[:current_user]
         else
           raise GraphQL::ExecutionError, 'You are not allowed'
         end
-
       rescue Interactor::Failure => e
-        # This does not work since we are not returning any Type error, we're only returning a user
         OpenStruct.new(
           user: nil,
           message: 'User Not Found',
