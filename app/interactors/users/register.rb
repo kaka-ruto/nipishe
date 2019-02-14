@@ -17,10 +17,7 @@ module Users
       context.user = User.create!(attributes.to_h)
       context.auth_token = JsonWebToken.encode(user_id: context.user.id)
 
-      OpenStruct.new(
-        user: context.user,
-        auth_token: context.auth_token
-      )
+      context.user_with_token
     end
   end
 end
