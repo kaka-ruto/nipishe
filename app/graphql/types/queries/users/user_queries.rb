@@ -2,18 +2,10 @@
 
 module Types
   module Queries
-    class Users < Types::BaseObject
-      # I would be good to do as below
-      field :profile, resolver: Queries::Users::GetProfile
-
-      # OR
-      # field :user_profile, Types::Objects::Users::UserProfile, null: false do
-      #   argument :id, Int, required: true
-      # end
-      #
-      # def user_profile(id:)
-      #   User.find(id)
-      # end
+    module Users
+      class UserQueries < Types::BaseObject
+        field :profile, resolver: ::Queries::Users::GetProfile
+      end
     end
   end
 end
