@@ -28,11 +28,11 @@ RSpec.describe Users::Login, type: :interactor do
       end
 
       it 'returns user' do
-        expect(context[:user_object][:user]).to eq(user)
+        expect(context.user).to eq(user)
       end
 
       it 'returns the auth_token' do
-        expect(context[:user_object][:auth_token]).not_to be_nil
+        expect(context.auth_token).not_to be_nil
       end
     end
   end
@@ -51,7 +51,7 @@ RSpec.describe Users::Login, type: :interactor do
       end
 
       it 'returns a user not found error' do
-        expect(context[:error]).to eq('User not found')
+        expect(context[:error]).to eq("Couldn't find User")
       end
     end
 
