@@ -6,7 +6,6 @@ RSpec.describe Mutations::Users::Login do
   end
 
   let!(:user) { User.create!(signup_attributes.to_h) }
-  let(:headers) { valid_headers.except('Authorization') }
   let(:signup_attributes) do
     {
       first_name: 'Ava',
@@ -56,17 +55,17 @@ RSpec.describe Mutations::Users::Login do
         }
       end
 
-      # it 'returns nil user' do
-      #   expect(context[:user]).to eq nil
-      # end
+      it 'returns nil user' do
+        expect(context[:user]).to eq nil
+      end
 
-      # it 'returns login failed message' do
-      #   expect(context[:message]).to eq('Login Unsuccessful')
-      # end
-      #
-      # it 'returns appropriate error message' do
-      #   expect(context[:error]).to eq('Login Unsuccessful')
-      # end
+      it 'returns login failed message' do
+        expect(context[:message]).to eq('Login Unsuccessful')
+      end
+
+      it 'returns appropriate context error message' do
+        expect(context[:errors]).to eq("Couldn't find User")
+      end
     end
   end
 end

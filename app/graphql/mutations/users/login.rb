@@ -10,6 +10,14 @@ module Mutations
       field :errors, [String], null: false
 
       def resolve(attributes:)
+        login_user(attributes)
+      rescue Interactor::Failure => e
+        failed_login(e)
+      end
+
+      private
+
+      def login_user(attributes)
         user_object = ::Users::Login.call!(attributes: attributes)
 
         OpenStruct.new(
@@ -18,7 +26,9 @@ module Mutations
           message: 'Successful Login',
           errors: []
         )
-      rescue Interactor::Failure => e
+      end
+
+      def failed_login(e)
         OpenStruct.new(
           user: nil,
           message: 'Login Unsuccessful',
