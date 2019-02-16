@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class JsonWebToken
-  HMAC_SECRET = Rails.application.credentials.secret_key_base
+  HMAC_SECRET = ENV['RAILS_MASTER_KEY']
 
-  def self.encode(payload, exp=24.hours.from_now)
+  def self.encode(payload, exp = 24.hours.from_now)
     payload[:exp] = exp.to_i
     JWT.encode(payload, HMAC_SECRET)
   end
