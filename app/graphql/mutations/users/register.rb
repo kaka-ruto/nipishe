@@ -10,6 +10,18 @@ module Mutations
       field :errors, [String], null: false
 
       def resolve(attributes:)
+        register_user(attributes)
+      rescue Interactor::Failure => e
+        OpenStruct.new(
+          user: nil,
+          message: 'Sign Up Unsuccessful',
+          errors: [e.context.error]
+        )
+      end
+
+      private
+
+      def register_user(attributes)
         # Namespace to 'Interactors::Users::Register.call!'' for better readability
         user_object = ::Users::Register.call!(attributes: attributes)
 
@@ -18,12 +30,6 @@ module Mutations
           auth_token: user_object[:auth_token],
           message: 'Successful Sign Up',
           errors: []
-        )
-      rescue Interactor::Failure => e
-        OpenStruct.new(
-          user: nil,
-          message: 'Sign Up Unsuccessful',
-          errors: [e.context.error]
         )
       end
     end

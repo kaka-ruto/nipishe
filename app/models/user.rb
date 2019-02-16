@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -38,9 +40,10 @@
 class User < ApplicationRecord
   # Encrypt password
   has_secure_password
+  VALID_EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i.freeze
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, format: { with: VALID_EMAIL_REGEX }, presence: true, uniqueness: true
   validates :password_digest, presence: true
 end
