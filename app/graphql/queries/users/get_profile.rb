@@ -10,17 +10,15 @@ module Queries
       # type [String], null: false # Find a way to return errors also
 
       def resolve(id:)
-        if context[:current_user].id == id
-          context[:current_user]
-        else
-          raise GraphQL::ExecutionError, 'You are not allowed'
-        end
-      rescue Interactor::Failure => e
-        OpenStruct.new(
-          user: nil,
-          message: 'User Not Found',
-          errors: e.context.error
-        )
+        return context[:current_user] if logged_in_user?(id)
+
+        raise GraphQL::ExecutionError, 'You are not allowed'
+      end
+
+      private
+
+      def logged_in_user?(id)
+        context[:current_user].id == id
       end
     end
   end
