@@ -57,6 +57,6 @@ RSpec.describe User, type: :model do
     it { expect(user).to allow_value(attributes[:first_name]).for(:first_name) }
     it { expect(user).to allow_value(attributes[:last_name]).for(:last_name) }
     it { expect(user).to allow_value(attributes[:email]).for(:email) }
-    it { expect(user).to allow_value(attributes[:encrypted_password]).for(:encrypted_password) }
+    it { expect(user).to allow_value(attributes[:password_digest]).for(:password_digest) }
   end
 end
