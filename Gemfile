@@ -63,6 +63,7 @@ group :development, :test do
 
   # Coding-style
   gem 'rubocop'
+  gem 'rubocop-rails'
   gem 'rubocop-rspec'
 end
 
