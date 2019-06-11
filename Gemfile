@@ -36,8 +36,7 @@ gem 'rack-cors'
 # FUNCTIONALITY
 # Authentication and Authorization
 gem 'jwt'
-gem 'pundit'
-gem 'graphql-guard'
+gem "action_policy-graphql", "~> 0.1"
 
 # API
 gem 'graphql'

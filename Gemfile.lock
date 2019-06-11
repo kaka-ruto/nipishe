@@ -1,6 +1,10 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action_policy (0.3.1)
+    action_policy-graphql (0.1.0)
+      action_policy (>= 0.3.0)
+      graphql (>= 1.9.3)
     actioncable (5.2.3)
       actionpack (= 5.2.3)
       nio4r (~> 2.0)
@@ -82,8 +86,6 @@ GEM
       railties
       sprockets-rails
     graphql (1.9.6)
-    graphql-guard (1.2.2)
-      graphql (>= 1.6.0, < 2)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     interactor (3.1.1)
@@ -124,8 +126,6 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     puma (3.12.1)
-    pundit (2.0.1)
-      activesupport (>= 3.0.0)
     rack (2.0.7)
     rack-cors (1.0.3)
     rack-test (1.1.0)
@@ -219,6 +219,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  action_policy-graphql (~> 0.1)
   annotate
   bcrypt (~> 3.1.7)
   better_errors
@@ -230,7 +231,6 @@ DEPENDENCIES
   faker
   graphiql-rails
   graphql
-  graphql-guard
   interactor-rails
   jwt
   listen (>= 3.0.5, < 3.2)
@@ -238,7 +238,6 @@ DEPENDENCIES
   pry-nav
   pry-rails
   puma (~> 3.11)
-  pundit
   rack-cors
   rails (~> 5.2.1)
   rspec-graphql_matchers
