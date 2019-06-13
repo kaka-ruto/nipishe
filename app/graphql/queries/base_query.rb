@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module Queries
-  class Base < GraphQL::Schema::Resolver
+  class BaseQuery < GraphQL::Schema::Resolver
   end
 end
