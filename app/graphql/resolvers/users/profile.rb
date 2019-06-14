@@ -10,13 +10,13 @@ module Resolvers
       type Types::Errors::UserError, null: true # Find a way to return errors also
 
       def resolve(id:)
-        user = User.find(id)
+        user = ::Users::GetProfile.call!(id: id).user
         
         { 'user': user,
           'errors': nil }
-        rescue ActiveRecord::RecordNotFound => e
+        rescue Interactor::Failure => e
           { 'user': nil,
-            'errors': e.message }
+            'errors': e.context.error }
       end
     end
   end

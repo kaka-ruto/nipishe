@@ -6,11 +6,11 @@ module Users
     delegate :id, to: :context
 
     def call
-      user = User.find(id)
+      context.user = User.find(id)
     rescue ActiveRecord::RecordNotFound => e
       context.fail! error: e.message
 
-      user
+      context.user
     end
   end
 end
