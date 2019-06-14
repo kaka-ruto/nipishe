@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::API
-  authorize :user
   include Errors::ExceptionHandler
+rescue_from ActionPolicy::Unauthorized do |e|
+  {
+    'details': e.result.reasons.details
+  }
+end
 end

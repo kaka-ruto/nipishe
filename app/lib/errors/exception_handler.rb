@@ -22,6 +22,7 @@ module Errors
         with: :response_error
       rescue_from Errors::ExceptionHandler::InvalidToken,
         with: :response_error
+      rescue_from ActionPolicy::Unauthorized, with: :unauthorized_error
     end
 
     private
@@ -29,6 +30,17 @@ module Errors
     def response_error(e)
       binding.pry # TODO: find out why this is not called
       render json: { error: e.message }
+    end
+
+    def unauthorized_error(e)
+      raise GraphQL::ExecutionError.new(
+        e.result.message,
+        extensions: {
+          code: :unauthorized,
+          fullMessages: e.result.reasons.full_messages,
+          details: e.result.reasons.details
+        }
+      )
     end
   end
 end

@@ -36,11 +36,14 @@ gem 'rack-cors'
 # FUNCTIONALITY
 # Authentication and Authorization
 gem 'jwt'
-gem "action_policy-graphql", "~> 0.1"
+gem 'action_policy-graphql', '~> 0.1'
 
 # API
 gem 'graphql'
 gem 'graphiql-rails'
+
+# Error handling
+gem 'graphql-errors'
 
 # Factories
 gem 'factory_bot_rails', require: false
