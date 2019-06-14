@@ -1,17 +1,14 @@
 # frozen_string_literal: true
-require 'rails_helper'
+require 'action_policy/rspec'
 
 RSpec.describe Mutations::Users::UpdateProfile do
   subject(:profile) do
-    described_class.new(object: nil, context: { 'current_user': user })
-                   .resolve(id: user_id, attributes: new_attributes)
+    described_class.new(object: nil, 
+                        context: { 'current_user': user })
   end
-
-  let(:user) { create(:user) }
 
   describe '.resolve' do
     # Success
-    let(:user_id) { user.id }
     let(:new_attributes) do
       {
         date_of_birth: '00-00-1967',
@@ -20,36 +17,36 @@ RSpec.describe Mutations::Users::UpdateProfile do
       }
     end
 
-    context 'when the user exists' do
+    context "when the user is authorized" do
+      let(:user) { create(:user) }
+
+      it "is authorized" do
+        result = profile.resolve(id: user.id, attributes: new_attributes)
+        expect {
+          result
+        }.to be_authorized_to(:update?, user).with(Users::UserPolicy)
+      end
+
+
       it 'updates the user' do
-        expect(profile.user).to have_attributes new_attributes
+        result = profile.resolve(id: user.id, attributes: new_attributes)
+        expect(result.user).to have_attributes(new_attributes)
       end
     end
 
     # Failure
-    context 'when the user is not authenticated' do
-      let(:user_id) { 10 }
+    context 'when the user is not authorized' do
+      let(:user) { create(:user) }
+      let(:second_user) { create(:user) }
 
-      it 'returns a user not found error message' do
-        expect(profile[:errors]).to eq ['Authentication required']
+      it 'raises a GraphQL::ExecutionError message' do
+        result = profile.resolve(id: second_user.id, attributes: new_attributes)
+        
+        expect { result }.to raise_error(GraphQL::ExecutionError)
       end
 
       it 'does not update the user' do
         expect(user).not_to have_attributes new_attributes
-      end
-    end
-
-    context 'when the new attributes are invalid' do
-      let(:new_attributes) do
-        {
-          date_of_birth: '00-00-1967',
-          gender: 'Male',
-          last_name: ''
-        }
-      end
-
-      it 'returns a User Update Not Successful error message' do
-        expect(profile[:message]).to eq 'User Update Not Successful'
       end
     end
   end

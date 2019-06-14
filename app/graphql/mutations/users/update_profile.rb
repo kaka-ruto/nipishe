@@ -11,21 +11,23 @@ module Mutations
       field :errors, [String], null: false
 
       def resolve(id:, attributes:)
-        if context[:current_user].id == id
-          update_profile(attributes)
+        user = User.find(id)
+
+        # authorize! user, to: :update?, with: ::Users::UserPolicy
+        if allowed_to? :update?, user, with: ::Users::UserPolicy
+          update_profile(user, attributes)
         else
-          { errors: ['Authentication required'] }
+          failed_authorization
         end
-      rescue Interactor::Failure => e
-        failed_context(e)
       end
 
       private
 
-      def update_profile(attributes)
-        user = ::Users::UpdateProfile.call!(
-          user: context[:current_user], attributes: attributes
+      def update_profile(user, attributes)
+        user = ::Users::UpdateProfile.call(
+          user: user, attributes: attributes
         ).user
+
 
         OpenStruct.new(
           user: user,
@@ -40,6 +42,10 @@ module Mutations
           message: 'User Update Not Successful',
           errors: [e.context.error]
         )
+      end
+
+      def failed_authorization
+        raise GraphQL::ExecutionError, 'You are not allowed to update this user'
       end
     end
   end

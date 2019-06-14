@@ -7,6 +7,10 @@ module Users
     def show?
       allowed_to?(:show?, record)
     end
+
+    def update?
+      user == record
+    end
   end
 end
 
