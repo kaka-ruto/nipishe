@@ -3,7 +3,8 @@
 module Types
   module Queries
     class Users < Types::BaseObject
-      field :profile, resolver: ::Queries::Users::Profile, authorize: true
+      field :profile, resolver: ::Queries::Users::Profile,
+        authorize: { to: :show?, with: ::Users::UserPolicy }
     end
   end
 end
