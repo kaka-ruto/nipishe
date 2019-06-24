@@ -5,7 +5,3 @@ class NipisheSchema < GraphQL::Schema
   query Types::QueryTypes
   mutation Types::MutationTypes
 end
-
-GraphQL::Errors.configure(NipisheSchema) do
-  include Errors::ExceptionHandler
-end

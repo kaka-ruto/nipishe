@@ -2,7 +2,7 @@
 
 module Types
   class QueryTypes < Types::BaseObject
-    field :profile, resolver: Queries::Users::Profile,
+    field :profile, resolver: Resolvers::Users::Profile,
                     authorize: { to: :show?, with: Users::UserPolicy }
   end
 end

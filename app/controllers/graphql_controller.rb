@@ -7,7 +7,7 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = { current_user: current_user }
 
-    result = SokoplaceSchema.execute(
+    result = NipisheSchema.execute(
       query,
       variables: variables,
       context: context,
