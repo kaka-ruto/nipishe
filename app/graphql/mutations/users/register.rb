@@ -4,13 +4,13 @@ module Mutations
   module Users
     # This class initiates the user signup process
     class Register < Mutations::BaseMutation
-      argument :attributes, Types::Inputs::Users::Registration, required: true
+      argument :params, Types::Inputs::Users::Registration, required: true
 
       field :user, Types::Objects::Users::User, null: true
       field :errors, [String], null: false
 
-      def resolve(attributes:)
-        register_user(attributes)
+      def resolve(params:)
+        register_user(params)
       rescue Interactor::Failure => e
         OpenStruct.new(
           user: nil,
@@ -21,9 +21,9 @@ module Mutations
 
       private
 
-      def register_user(attributes)
+      def register_user(params)
         # Namespace to 'Interactors::Users::Register.call!'' for better readability
-        user_object = ::Users::Register.call!(attributes: attributes)
+        user_object = ::Users::Register.call!(attributes: params)
 
         OpenStruct.new(
           user: user_object[:user],
