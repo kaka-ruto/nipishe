@@ -1,6 +1,6 @@
-# Sokoplace
+# Nipishe
 
-Delivery logistics for Africa
+A Rails + GraphQL starter kit template with authentication, authorization and basic user account management features
 
 ## Getting Started
 
@@ -18,7 +18,7 @@ Rails -v 5.2.1
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+A step by step series of examples that tell you how to get your development environment up and running
 
 Install postgresql:
 
@@ -29,10 +29,10 @@ brew install postgresql
 Clone the project:
 
 ```
-git clone https://github.com/sokoplace/sokoplace.git
+git clone https://github.com/borenho/nipishe.git
 ```
 
-Change directory (cd) into `sokoplace` and set up your environment:
+Change directory (cd) into `nipishe` and set up your environment:
 
 ```
 bin/setup
@@ -79,9 +79,3 @@ Todo: Add notes about how to deploy this on a live system
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-
-### Acknowledgments
-
-* DHH
-* Sandi Metz
-* Martin Fowler
