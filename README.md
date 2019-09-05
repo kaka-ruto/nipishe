@@ -20,6 +20,8 @@ Rails -v 5.2.1
 
 A step by step series of examples that tell you how to get your development environment up and running
 
+## Without Docker
+
 Install postgresql:
 
 ```
@@ -44,11 +46,80 @@ Start the Rails server
 bin/rails server
 ```
 
+## With Docker
+Docker will allow us to containerize our app into a light-weight, stand-alone
+and executable package of a piece of software that includes everything needed to run
+it, be it the OS, libraries, gems and any other dependency.
+
+I'll be giving examples on how you can get started on OS X (mac). If you're
+using a different OS, please Google it and once you have the steps working for
+you, come back and raise a PR for the same here :), because this is OSS
+
+# Getting Started on Mac OS X
+
+Install VirtualBox and Homebrew Cask
+```
+brew install caskroom/cask/brew-cask
+brew cask install virtualbox
+```
+
+Install Docker and Docker Machine
+```
+brew install docker docker-machine
+```
+
+Create a new VM in Virtualbox named default, then run it
+```
+docker-machine create --driver virtualbox default
+docker-machine start default
+```
+
+Export the Docker environment variables to your shell(you'd have to run this on
+every new terminal session)
+```
+eval "$(docker-machine env default)"
+```
+
+To make your work easier, add the previous command to your `.bashrc` or `zshrc` file, so that it's available any time you subsequently open a terminal.
+```
+eval $(docker-machine env default)
+```
+
+Install Docker Compose
+```
+brew install docker-compose
+```
+
+# Provisioning the app
+Clone the project:
+
+```
+git clone https://github.com/borenho/nipishe.git
+```
+
+Change directory (cd) into `nipishe`.
+Set up your docker environment, by building the docker image
+```
+docker-compose build
+```
+
+Setup the database(create, migrate, seed)
+```
+docker-compose run runner ./bin/setup
+```
+
+Now run the sweet Rails app
+```
+docker-compose up rails
+```
+
 Open the application
 
 ```
 http://localhost:3000
 ```
+
+You're all set! Now you're ready to code!
 
 ### GraphQL
 
