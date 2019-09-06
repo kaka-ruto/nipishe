@@ -36,9 +36,9 @@ RUN gem update --system && \
     gem install bundler:$BUNDLER_VERSION
 
 # Create a directory for the app code
-ENV APP_HOME /nipishe
+ENV APP_HOME /app
 RUN mkdir -p $APP_HOME
 
 # Change into the work dir and copy the application code into the image
 WORKDIR $APP_HOME
-COPY . /$APP_HOME
+COPY . $APP_HOME
