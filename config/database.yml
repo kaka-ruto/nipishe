@@ -1,29 +1,16 @@
 # PostgreSQL. Versions 9.1 and up are supported.
-#
-# Install the pg driver:
-#   gem install pg
-# On OS X with Homebrew:
-#   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
-# On OS X with MacPorts:
-#   gem install pg -- --with-pg-config=/opt/local/lib/postgresql84/bin/pg_config
-# On Windows:
-#   gem install pg
-#       Choose the win32 build.
-#       Install PostgreSQL and put its /bin directory on your path.
-#
-# Configure Using Gemfile
-# gem 'pg'
-#
+
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  host: postgres          # Point the db to the postgres container(docker)
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: sokoplace_development
+  database: nipishe_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +44,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: sokoplace_test
+  database: nipishe_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +67,6 @@ test:
 #
 production:
   <<: *default
-  database: sokoplace_production
-  username: sokoplace
-  password: <%= ENV['SOKOPLACE_DATABASE_PASSWORD'] %>
+  database: nipishe_production
+  username: nipishe
+  password: <%= ENV['NIPISHE_DATABASE_PASSWORD'] %>

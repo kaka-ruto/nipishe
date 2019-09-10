@@ -1,21 +1,20 @@
 # frozen_string_literal: true
 
+require 'database_cleaner'
+
 RSpec.configure do |config|
+
   config.before(:suite) do
-    DatabaseCleaner.clean_with(
-      :truncation,
-      except: %w[spatial_ref_sys schema_migrations]
-    )
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.before(:each) { DatabaseCleaner.strategy = :transaction }
-
-  config.before(:each, js: true) do
-    DatabaseCleaner.strategy =
-      :truncation,
-      { except: %w[spatial_ref_sys schema_migrations] }
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 
-  config.before(:each) { DatabaseCleaner.start }
-  config.append_after(:each) { DatabaseCleaner.clean }
+  DatabaseCleaner.allow_remote_database_url = true
+
 end
