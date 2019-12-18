@@ -6,7 +6,7 @@ A Rails + GraphQL starter kit template with authentication, authorization and ba
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+## Prerequisites
 
 What things you need to install the software and how to install them; https://gorails.com/setup
 is a good one
@@ -16,19 +16,19 @@ Ruby -v 2.5.0,
 Rails -v 5.2.1
 ```
 
-### Installing
+# Installation Instructions
 
 A step by step series of examples that tell you how to get your development environment up and running
 
-## Without Docker
+## Without Docker / The Normal Rails Way
 
-Install postgresql:
+Install Postgresql
 
 ```
 brew install postgresql
 ```
 
-Clone the project:
+Clone the project
 
 ```
 git clone https://github.com/borenho/nipishe.git
@@ -51,46 +51,40 @@ Docker will allow us to containerize our app into a light-weight, stand-alone
 and executable package of a piece of software that includes everything needed to run
 it, be it the OS, libraries, gems and any other dependency.
 
-I'll be giving examples on how you can get started on OS X (mac). If you're
-using a different OS, please Google it and once you have the steps working for
-you, come back and raise a PR for the same here :), because this is OSS
+### Installing Docker
+For Mac users, download Docker for mac on https://github.com/docker/for-mac
 
-# Getting Started on Mac OS X
+For Windows users, get docker on https://github.com/docker/for-win
 
-Install VirtualBox and Homebrew Cask
-```
-brew install caskroom/cask/brew-cask
-brew cask install virtualbox
-```
+If you are on Ubuntu, the following steps are recommended:
 
-Install Docker and Docker Machine
+Update your local database of software to get the latest revisions
+
 ```
-brew install docker docker-machine
+sudo apt-get update
 ```
 
-Create a new VM in Virtualbox named default, then run it
+Get/download Docker
+
 ```
-docker-machine create --driver virtualbox default
-docker-machine start default
+sudo apt install docker.io
 ```
 
-Export the Docker environment variables to your shell(you'd have to run this on
-every new terminal session)
+Start and automate Docker
 ```
-eval "$(docker-machine env default)"
+sudo systemctl start docker
 ```
-
-To make your work easier, add the previous command to your `.bashrc` or `zshrc` file, so that it's available any time you subsequently open a terminal.
 ```
-eval $(docker-machine env default)
+sudo systemctl enable docker
 ```
 
-Install Docker Compose
+### Installing Docker Compose
+
 ```
 brew install docker-compose
 ```
 
-# Provisioning the app
+### Provisioning the app
 Clone the project:
 
 ```
@@ -119,22 +113,22 @@ Open the application
 http://localhost:3000
 ```
 
-To use the GraphiQL web interface make sure you have a file at app/assets/config/manifest.js with the following content:
+To use the GraphiQL web interface make sure you have a file at `app/assets/config/manifest.js` with the following content:
 
 ```
 //= link graphiql/rails/application.css
 //= link graphiql/rails/application.js
 
 ```
- 
+
 You're all set! Now you're ready to code!
 
-### GraphQL
+# GraphQL
 
 Todo: Show how to run mutations and queries on the API
 
 
-### Tests
+## Tests
 
 Run the tests
 
@@ -143,7 +137,7 @@ bin/rspec
 ```
 
 
-### Deployment
+# Deployment
 
 Todo: Add notes about how to deploy this on a live system
 
