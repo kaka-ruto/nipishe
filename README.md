@@ -119,6 +119,14 @@ Open the application
 http://localhost:3000
 ```
 
+To use the GraphiQL web interface make sure you have a file at app/assets/config/manifest.js with the following content:
+
+```
+//= link graphiql/rails/application.css
+//= link graphiql/rails/application.js
+
+```
+ 
 You're all set! Now you're ready to code!
 
 ### GraphQL
