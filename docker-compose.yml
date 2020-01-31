@@ -20,7 +20,7 @@ services:
     volumes:
       - .:/app:cached
       - rails_cache:/app/tmp/cache
-      - bundle:/bundle
+      - bundle:/usr/local/bundle
       - packs:/app/public/packs
       - .docker/.psqlrc:/root/.psqlrc:ro
     environment:
@@ -33,7 +33,8 @@ services:
       - MALLOC_ARENA_MAX=2
       - WEB_CONCURRENCY=${WEB_CONCURRENCY:-1}
     depends_on:
-      - postgres
+      - postgres:
+          condition: service_healthy
 
   runner:
     <<: *backend
@@ -47,8 +48,6 @@ services:
     command: bundle exec rails server -b 0.0.0.0
     ports:
       - '3000:3000'
-    expose:
-      - 3000
 
   postgres:
     image: postgres:11.1
@@ -60,6 +59,9 @@ services:
       - PSQL_HISTFILE=/root/log/.psql_history
     ports:
       - '5442:5432'
+    healthcheck:
+      test: pg_isready -U postgres -h 127.0.0.1
+      interval: 5s
 
 volumes:
   postgres:
