@@ -47,6 +47,8 @@ services:
     command: bundle exec rails server -b 0.0.0.0
     ports:
       - '3000:3000'
+    expose:
+      - 3000
 
   postgres:
     image: postgres:11.1
@@ -57,7 +59,7 @@ services:
     environment:
       - PSQL_HISTFILE=/root/log/.psql_history
     ports:
-      - 5432
+      - '5442:5432'
 
 volumes:
   postgres:

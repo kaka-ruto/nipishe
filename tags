@@ -1,0 +1,223 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/578ea8b/
+.call	spec/interactors/users/get_profile_spec.rb	/^  describe '.call' do$/;"	d
+.call	spec/interactors/users/update_profile_spec.rb	/^  describe '.call' do$/;"	d
+.resolve	spec/graphql/mutations/users/update_profile_spec.rb	/^  describe '.resolve' do$/;"	d
+.resolve	spec/graphql/queries/users/get_profile_spec.rb	/^  describe '.resolve' do$/;"	d
+APP_PATH	bin/rails	/^APP_PATH = File.expand_path('..\/config\/application', __dir__)$/;"	c
+APP_ROOT	bin/setup	/^APP_ROOT = Pathname.new(File.expand_path('..', __dir__))$/;"	c
+APP_ROOT	bin/update	/^APP_ROOT = File.expand_path('..', __dir__)$/;"	c
+Acknowledgments	README.md	/^### Acknowledgments$/;"	S
+Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	module:Sokoplace
+ApplicationCable	app/channels/application_cable/channel.rb	/^module ApplicationCable$/;"	m
+ApplicationCable	app/channels/application_cable/connection.rb	/^module ApplicationCable$/;"	m
+ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::API$/;"	c
+ApplicationError	app/lib/errors/exception_handler.rb	/^    class ApplicationError < StandardError; end$/;"	c	module:Errors.ExceptionHandler
+ApplicationJob	app/jobs/application_job.rb	/^class ApplicationJob < ActiveJob::Base$/;"	c
+ApplicationMailer	app/mailers/application_mailer.rb	/^class ApplicationMailer < ActionMailer::Base$/;"	c
+ApplicationPolicy	app/policies/application_policy.rb	/^class ApplicationPolicy$/;"	c
+ApplicationRecord	app/models/application_record.rb	/^class ApplicationRecord < ActiveRecord::Base$/;"	c
+AuthSpecHelper	spec/support/helpers/auth_spec_helper.rb	/^  module AuthSpecHelper$/;"	m	module:Helpers
+AuthenticationError	app/lib/errors/exception_handler.rb	/^    class AuthenticationError < ResponseError; end$/;"	c	module:Errors.ExceptionHandler
+AuthorizeApiRequest	app/interactors/authorize_api_request.rb	/^class AuthorizeApiRequest < BaseInteractor$/;"	c
+AuthorizeApiRequest, type: :interactor	spec/interactors/authorize_api_request_spec.rb	/^RSpec.describe AuthorizeApiRequest, type: :interactor do$/;"	d
+Base	app/graphql/queries/base.rb	/^  class Base < GraphQL::Schema::Resolver$/;"	c	module:Queries
+BaseEnum	app/graphql/types/base_enum.rb	/^  class BaseEnum < GraphQL::Schema::Enum$/;"	c	module:Types
+BaseInputObject	app/graphql/types/base_input_object.rb	/^  class BaseInputObject < GraphQL::Schema::InputObject$/;"	c	module:Types
+BaseInteractor	app/interactors/base_interactor.rb	/^class BaseInteractor$/;"	c
+BaseInterface	app/graphql/types/base_interface.rb	/^  module BaseInterface$/;"	m	module:Types
+BaseMutation	app/graphql/mutations/base_mutation.rb	/^  class BaseMutation < GraphQL::Schema::RelayClassicMutation$/;"	c	module:Mutations
+BaseObject	app/graphql/types/base_object.rb	/^  class BaseObject < GraphQL::Schema::Object$/;"	c	module:Types
+BaseUnion	app/graphql/types/base_union.rb	/^  class BaseUnion < GraphQL::Schema::Union$/;"	c	module:Types
+Built With	README.md	/^### Built With$/;"	S
+Channel	app/channels/application_cable/channel.rb	/^  class Channel < ActionCable::Channel::Base$/;"	c	module:ApplicationCable
+Connection	app/channels/application_cable/connection.rb	/^  class Connection < ActionCable::Connection::Base$/;"	c	module:ApplicationCable
+CreateUsers	db/migrate/20181004011840_create_users.rb	/^class CreateUsers < ActiveRecord::Migration[5.2]$/;"	c
+DecodeError	app/lib/json_web_token.rb	/^  rescue JWT::DecodeError => e$/;"	c
+Deployment	README.md	/^### Deployment$/;"	S
+Errors	app/lib/errors/exception_handler.rb	/^module Errors$/;"	m
+ExceptionHandler	app/lib/errors/exception_handler.rb	/^  module ExceptionHandler$/;"	m	module:Errors
+Failure	app/controllers/graphql_controller.rb	/^  rescue Interactor::Failure => e$/;"	c
+Failure	app/graphql/mutations/users/login.rb	/^      rescue Interactor::Failure => e$/;"	c
+Failure	app/graphql/mutations/users/register.rb	/^      rescue Interactor::Failure => e$/;"	c
+Failure	app/graphql/mutations/users/update_profile.rb	/^      rescue Interactor::Failure => e$/;"	c
+Failure	spec/graphql/mutations/users/login_spec.rb	/^  describe 'Failure' do$/;"	d
+Failure	spec/graphql/mutations/users/register_spec.rb	/^  describe 'Failure' do$/;"	d
+GetProfile	app/graphql/queries/users/get_profile.rb	/^    class GetProfile < Queries::Base$/;"	c	module:Queries.Users
+GetProfile	app/interactors/users/get_profile.rb	/^  class GetProfile < BaseInteractor$/;"	c	module:Users
+Getting Started	README.md	/^## Getting Started$/;"	s
+GraphQL	README.md	/^### GraphQL$/;"	S
+GraphqlController	app/controllers/graphql_controller.rb	/^class GraphqlController < ApplicationController$/;"	c
+HMAC_SECRET	app/lib/json_web_token.rb	/^  HMAC_SECRET = ENV['RAILS_MASTER_KEY']$/;"	c
+Helpers	spec/support/helpers/auth_spec_helper.rb	/^module Helpers$/;"	m
+Input Data	spec/models/user_spec.rb	/^  describe 'Input Data' do$/;"	d
+Inputs	app/graphql/types/inputs/users/login.rb	/^  module Inputs$/;"	m	module:Types
+Inputs	app/graphql/types/inputs/users/profile_update.rb	/^  module Inputs$/;"	m	module:Types
+Inputs	app/graphql/types/inputs/users/registration.rb	/^  module Inputs$/;"	m	module:Types
+Installing	README.md	/^### Installing$/;"	S
+InvalidToken	app/lib/errors/exception_handler.rb	/^    class InvalidToken < ResponseError; end$/;"	c	module:Errors.ExceptionHandler
+JsonWebToken	app/lib/json_web_token.rb	/^class JsonWebToken$/;"	c
+License	README.md	/^### License$/;"	S
+Login	app/graphql/mutations/users/login.rb	/^    class Login < Mutations::BaseMutation$/;"	c	module:Mutations.Users
+Login	app/graphql/types/inputs/users/login.rb	/^      class Login < BaseInputObject$/;"	c	module:Types.Inputs.Users
+Login	app/interactors/users/login.rb	/^  class Login < BaseInteractor$/;"	c	module:Users
+MissingToken	app/lib/errors/exception_handler.rb	/^    class MissingToken < ResponseError; end$/;"	c	module:Errors.ExceptionHandler
+Mutations	app/graphql/mutations/base_mutation.rb	/^module Mutations$/;"	m
+Mutations	app/graphql/mutations/users/login.rb	/^module Mutations$/;"	m
+Mutations	app/graphql/mutations/users/register.rb	/^module Mutations$/;"	m
+Mutations	app/graphql/mutations/users/update_profile.rb	/^module Mutations$/;"	m
+Mutations	app/graphql/types/mutations/users/user_mutations.rb	/^  module Mutations$/;"	m	module:Types
+Mutations::Users::Login	spec/graphql/mutations/users/login_spec.rb	/^RSpec.describe Mutations::Users::Login do$/;"	d
+Mutations::Users::Register	spec/graphql/mutations/users/register_spec.rb	/^RSpec.describe Mutations::Users::Register do$/;"	d
+Mutations::Users::UpdateProfile	spec/graphql/mutations/users/update_profile_spec.rb	/^RSpec.describe Mutations::Users::UpdateProfile do$/;"	d
+Objects	app/graphql/types/objects/users/profile.rb	/^  module Objects$/;"	m	module:Types
+Objects	app/graphql/types/objects/users/user.rb	/^  module Objects$/;"	m	module:Types
+PendingMigrationError	spec/rails_helper.rb	/^rescue ActiveRecord::PendingMigrationError => e$/;"	c
+Prerequisites	README.md	/^### Prerequisites$/;"	S
+Profile	app/graphql/types/objects/users/profile.rb	/^      class Profile < Types::BaseObject$/;"	c	module:Types.Objects.Users
+ProfileUpdate	app/graphql/types/inputs/users/profile_update.rb	/^      class ProfileUpdate < BaseInputObject$/;"	c	module:Types.Inputs.Users
+Queries	app/graphql/queries/base.rb	/^module Queries$/;"	m
+Queries	app/graphql/queries/users/get_profile.rb	/^module Queries$/;"	m
+Queries	app/graphql/types/queries/users/user_queries.rb	/^  module Queries$/;"	m	module:Types
+Queries::Users::GetProfile	spec/graphql/queries/users/get_profile_spec.rb	/^RSpec.describe Queries::Users::GetProfile do$/;"	d
+RecordInvalid	app/interactors/users/register.rb	/^    rescue ActiveRecord::RecordInvalid => e$/;"	c
+RecordInvalid	app/interactors/users/update_profile.rb	/^    rescue ActiveRecord::RecordInvalid => e$/;"	c
+RecordNotFound	app/interactors/authorize_api_request.rb	/^  rescue ActiveRecord::RecordNotFound => e$/;"	c
+RecordNotFound	app/interactors/users/get_profile.rb	/^    rescue ActiveRecord::RecordNotFound => e$/;"	c
+RecordNotFound	app/interactors/users/login.rb	/^    rescue ActiveRecord::RecordNotFound => e$/;"	c
+Register	app/graphql/mutations/users/register.rb	/^    class Register < Mutations::BaseMutation$/;"	c	module:Mutations.Users
+Register	app/interactors/users/register.rb	/^  class Register < BaseInteractor$/;"	c	module:Users
+Registration	app/graphql/types/inputs/users/registration.rb	/^      class Registration < BaseInputObject$/;"	c	module:Types.Inputs.Users
+ResponseError	app/lib/errors/exception_handler.rb	/^    class ResponseError < ApplicationError; end$/;"	c	module:Errors.ExceptionHandler
+Scope	app/policies/application_policy.rb	/^  class Scope$/;"	c	class:ApplicationPolicy
+Sokoplace	README.md	/^# Sokoplace$/;"	c
+Sokoplace	config/application.rb	/^module Sokoplace$/;"	m
+SokoplaceSchema	app/graphql/schema.rb	/^class SokoplaceSchema < GraphQL::Schema$/;"	c
+SokoplaceSchema	app/graphql/sokoplace_schema.rb	/^class SokoplaceSchema < GraphQL::Schema$/;"	c
+Success	spec/graphql/mutations/users/login_spec.rb	/^  describe 'Success' do$/;"	d
+Success	spec/graphql/mutations/users/register_spec.rb	/^  describe 'Success' do$/;"	d
+Success	spec/interactors/authorize_api_request_spec.rb	/^  describe 'Success' do$/;"	d
+Success	spec/interactors/users/login_spec.rb	/^  describe 'Success' do$/;"	d
+Success	spec/interactors/users/register_spec.rb	/^  describe 'Success' do$/;"	d
+Tests	README.md	/^### Tests$/;"	S
+Types	app/graphql/types/base_enum.rb	/^module Types$/;"	m
+Types	app/graphql/types/base_input_object.rb	/^module Types$/;"	m
+Types	app/graphql/types/base_interface.rb	/^module Types$/;"	m
+Types	app/graphql/types/base_object.rb	/^module Types$/;"	m
+Types	app/graphql/types/base_union.rb	/^module Types$/;"	m
+Types	app/graphql/types/inputs/users/login.rb	/^module Types$/;"	m
+Types	app/graphql/types/inputs/users/profile_update.rb	/^module Types$/;"	m
+Types	app/graphql/types/inputs/users/registration.rb	/^module Types$/;"	m
+Types	app/graphql/types/mutations/users/user_mutations.rb	/^module Types$/;"	m
+Types	app/graphql/types/objects/users/profile.rb	/^module Types$/;"	m
+Types	app/graphql/types/objects/users/user.rb	/^module Types$/;"	m
+Types	app/graphql/types/queries/users/user_queries.rb	/^module Types$/;"	m
+Types::Inputs::Users::Login	spec/graphql/types/inputs/users/login_spec.rb	/^RSpec.describe Types::Inputs::Users::Login do$/;"	d
+Types::Inputs::Users::Registration	spec/graphql/types/inputs/users/registration_spec.rb	/^RSpec.describe Types::Inputs::Users::Registration do$/;"	d
+UpdateProfile	app/graphql/mutations/users/update_profile.rb	/^    class UpdateProfile < Mutations::BaseMutation$/;"	c	module:Mutations.Users
+UpdateProfile	app/interactors/users/update_profile.rb	/^  class UpdateProfile < BaseInteractor$/;"	c	module:Users
+User	app/graphql/types/objects/users/user.rb	/^      class User < Types::BaseObject$/;"	c	module:Types.Objects.Users
+User	app/models/user.rb	/^class User < ApplicationRecord$/;"	c
+User, type: :model	spec/models/user_spec.rb	/^RSpec.describe User, type: :model do$/;"	d
+UserMutations	app/graphql/types/mutations/users/user_mutations.rb	/^      class UserMutations < Types::BaseObject$/;"	c	module:Types.Mutations.Users
+UserQueries	app/graphql/types/queries/users/user_queries.rb	/^      class UserQueries < Types::BaseObject$/;"	c	module:Types.Queries.Users
+Users	app/graphql/mutations/users/login.rb	/^  module Users$/;"	m	module:Mutations
+Users	app/graphql/mutations/users/register.rb	/^  module Users$/;"	m	module:Mutations
+Users	app/graphql/mutations/users/update_profile.rb	/^  module Users$/;"	m	module:Mutations
+Users	app/graphql/queries/users/get_profile.rb	/^  module Users$/;"	m	module:Queries
+Users	app/graphql/types/inputs/users/login.rb	/^    module Users$/;"	m	module:Types.Inputs
+Users	app/graphql/types/inputs/users/profile_update.rb	/^    module Users$/;"	m	module:Types.Inputs
+Users	app/graphql/types/inputs/users/registration.rb	/^    module Users$/;"	m	module:Types.Inputs
+Users	app/graphql/types/mutations/users/user_mutations.rb	/^    module Users$/;"	m	module:Types.Mutations
+Users	app/graphql/types/objects/users/profile.rb	/^    module Users$/;"	m	module:Types.Objects
+Users	app/graphql/types/objects/users/user.rb	/^    module Users$/;"	m	module:Types.Objects
+Users	app/graphql/types/queries/users/user_queries.rb	/^    module Users$/;"	m	module:Types.Queries
+Users	app/interactors/users/get_profile.rb	/^module Users$/;"	m
+Users	app/interactors/users/login.rb	/^module Users$/;"	m
+Users	app/interactors/users/register.rb	/^module Users$/;"	m
+Users	app/interactors/users/update_profile.rb	/^module Users$/;"	m
+Users::GetProfile, type: :interactor	spec/interactors/users/get_profile_spec.rb	/^RSpec.describe Users::GetProfile, type: :interactor do$/;"	d
+Users::Login, type: :interactor	spec/interactors/users/login_spec.rb	/^RSpec.describe Users::Login, type: :interactor do$/;"	d
+Users::Register, type: :interactor	spec/interactors/users/register_spec.rb	/^RSpec.describe Users::Register, type: :interactor do$/;"	d
+Users::UpdateProfile, type: :interactor	spec/interactors/users/update_profile_spec.rb	/^RSpec.describe Users::UpdateProfile, type: :interactor do$/;"	d
+VALID_EMAIL_REGEX	app/models/user.rb	/^  VALID_EMAIL_REGEX = \/\\A([^@\\s]+)@((?:[-a-z0-9]+\\.)+[a-z]{2,})\\Z\/i.freeze$/;"	c
+Validations	spec/models/user_spec.rb	/^  describe 'Validations' do$/;"	d
+auth_header	app/interactors/authorize_api_request.rb	/^  def auth_header$/;"	f	class:AuthorizeApiRequest
+auth_token	app/interactors/authorize_api_request.rb	/^  def auth_token$/;"	f	class:AuthorizeApiRequest
+authenticate_user	app/interactors/users/login.rb	/^    def authenticate_user(attributes)$/;"	f	class:Users.Login
+call	app/interactors/authorize_api_request.rb	/^  def call$/;"	f	class:AuthorizeApiRequest
+call	app/interactors/users/get_profile.rb	/^    def call$/;"	f	class:Users.GetProfile
+call	app/interactors/users/login.rb	/^    def call$/;"	f	class:Users.Login
+call	app/interactors/users/register.rb	/^    def call$/;"	f	class:Users.Register
+call	app/interactors/users/update_profile.rb	/^    def call$/;"	f	class:Users.UpdateProfile
+change	db/migrate/20181004011840_create_users.rb	/^  def change$/;"	f	class:CreateUsers
+create?	app/policies/application_policy.rb	/^  def create?$/;"	f	class:ApplicationPolicy
+create_user_with_token	app/interactors/users/register.rb	/^    def create_user_with_token(attributes)$/;"	f	class:Users.Register
+current_user	app/controllers/graphql_controller.rb	/^  def current_user$/;"	f	class:GraphqlController
+decode	app/lib/json_web_token.rb	/^  def self.decode(token)$/;"	S	class:JsonWebToken
+destroy?	app/policies/application_policy.rb	/^  def destroy?$/;"	f	class:ApplicationPolicy
+edit?	app/policies/application_policy.rb	/^  def edit?$/;"	f	class:ApplicationPolicy
+encode	app/lib/json_web_token.rb	/^  def self.encode(payload, exp = 24.hours.from_now)$/;"	S	class:JsonWebToken
+ensure_hash	app/controllers/graphql_controller.rb	/^  def ensure_hash(ambiguous_param)$/;"	f	class:GraphqlController
+execute	app/controllers/graphql_controller.rb	/^  def execute$/;"	f	class:GraphqlController
+expired_token_generator	spec/support/helpers/auth_spec_helper.rb	/^    def expired_token_generator(user_id)$/;"	f	module:Helpers.AuthSpecHelper
+failed_context	app/graphql/mutations/users/update_profile.rb	/^      def failed_context(e)$/;"	f	class:Mutations.Users.UpdateProfile
+failed_login	app/graphql/mutations/users/login.rb	/^      def failed_login(e)$/;"	f	class:Mutations.Users.Login
+failure	spec/interactors/authorize_api_request_spec.rb	/^  describe 'failure' do$/;"	d
+failure	spec/interactors/users/login_spec.rb	/^  describe 'failure' do$/;"	d
+failure	spec/interactors/users/register_spec.rb	/^  describe 'failure' do$/;"	d
+handle_error_in_development	app/controllers/graphql_controller.rb	/^  def handle_error_in_development(e)$/;"	f	class:GraphqlController
+index?	app/policies/application_policy.rb	/^  def index?$/;"	f	class:ApplicationPolicy
+initialize	app/policies/application_policy.rb	/^    def initialize(user, scope)$/;"	f	class:ApplicationPolicy.Scope
+initialize	app/policies/application_policy.rb	/^  def initialize(user, record)$/;"	f	class:ApplicationPolicy
+invalid_headers	spec/support/helpers/auth_spec_helper.rb	/^    def invalid_headers$/;"	f	module:Helpers.AuthSpecHelper
+logged_in_user?	app/graphql/queries/users/get_profile.rb	/^      def logged_in_user?(id)$/;"	f	class:Queries.Users.GetProfile
+login_user	app/graphql/mutations/users/login.rb	/^      def login_user(attributes)$/;"	f	class:Mutations.Users.Login
+new?	app/policies/application_policy.rb	/^  def new?$/;"	f	class:ApplicationPolicy
+record	app/policies/application_policy.rb	/^  attr_reader :user, :record$/;"	A
+register_user	app/graphql/mutations/users/register.rb	/^      def register_user(attributes)$/;"	f	class:Mutations.Users.Register
+resolve	app/graphql/mutations/users/login.rb	/^      def resolve(attributes:)$/;"	f	class:Mutations.Users.Login
+resolve	app/graphql/mutations/users/register.rb	/^      def resolve(attributes:)$/;"	f	class:Mutations.Users.Register
+resolve	app/graphql/mutations/users/update_profile.rb	/^      def resolve(id:, attributes:)$/;"	f	class:Mutations.Users.UpdateProfile
+resolve	app/graphql/queries/users/get_profile.rb	/^      def resolve(id:)$/;"	f	class:Queries.Users.GetProfile
+resolve	app/policies/application_policy.rb	/^    def resolve$/;"	f	class:ApplicationPolicy.Scope
+response_error	app/lib/errors/exception_handler.rb	/^    def response_error(e)$/;"	f	module:Errors.ExceptionHandler
+scope	app/policies/application_policy.rb	/^    attr_reader :user, :scope$/;"	A
+show?	app/policies/application_policy.rb	/^  def show?$/;"	f	class:ApplicationPolicy
+system!	bin/setup	/^def system!(*args)$/;"	f
+system!	bin/update	/^def system!(*args)$/;"	f
+token_generator	spec/support/helpers/auth_spec_helper.rb	/^    def token_generator(user_id)$/;"	f	module:Helpers.AuthSpecHelper
+update?	app/policies/application_policy.rb	/^  def update?$/;"	f	class:ApplicationPolicy
+update_profile	app/graphql/mutations/users/update_profile.rb	/^      def update_profile(attributes)$/;"	f	class:Mutations.Users.UpdateProfile
+valid_headers	spec/support/helpers/auth_spec_helper.rb	/^    def valid_headers$/;"	f	module:Helpers.AuthSpecHelper
+valid_password?	app/interactors/users/login.rb	/^    def valid_password?(user, password)$/;"	f	class:Users.Login
+when expired token	spec/interactors/authorize_api_request_spec.rb	/^      context 'when expired token' do$/;"	c
+when fake token	spec/interactors/authorize_api_request_spec.rb	/^      context 'when fake token' do$/;"	c
+when invalid request	spec/interactors/authorize_api_request_spec.rb	/^    context 'when invalid request' do$/;"	c
+when invalid token	spec/interactors/authorize_api_request_spec.rb	/^      context 'when invalid token' do$/;"	c
+when login attributes are valid	spec/graphql/mutations/users/login_spec.rb	/^    context 'when login attributes are valid' do$/;"	c
+when login attributes are valid	spec/interactors/users/login_spec.rb	/^    context 'when login attributes are valid' do$/;"	c
+when missing token	spec/interactors/authorize_api_request_spec.rb	/^      context 'when missing token' do$/;"	c
+when one of the passed attributes is invalid	spec/graphql/mutations/users/login_spec.rb	/^    context 'when one of the passed attributes is invalid' do$/;"	c
+when password is invalid	spec/interactors/users/register_spec.rb	/^    context 'when password is invalid' do$/;"	c
+when registration fails	spec/graphql/mutations/users/register_spec.rb	/^    context 'when registration fails' do$/;"	c
+when signup attributes are valid	spec/interactors/users/register_spec.rb	/^    context 'when signup attributes are valid' do$/;"	c
+when signup email is invalid	spec/interactors/users/register_spec.rb	/^    context 'when signup email is invalid' do$/;"	c
+when signup is successful	spec/graphql/mutations/users/register_spec.rb	/^    context 'when signup is successful' do$/;"	c
+when the new attributes are invalid	spec/graphql/mutations/users/update_profile_spec.rb	/^    context 'when the new attributes are invalid' do$/;"	c
+when the new attributes are invalid	spec/interactors/users/update_profile_spec.rb	/^    context 'when the new attributes are invalid' do$/;"	c
+when the new attributes are valid	spec/interactors/users/update_profile_spec.rb	/^    context 'when the new attributes are valid' do$/;"	c
+when the password is wrong	spec/interactors/users/login_spec.rb	/^    context 'when the password is wrong' do$/;"	c
+when the user does not exist	spec/interactors/users/get_profile_spec.rb	/^    context 'when the user does not exist' do$/;"	c
+when the user exists	spec/graphql/mutations/users/update_profile_spec.rb	/^    context 'when the user exists' do$/;"	c
+when the user is authenticated	spec/graphql/queries/users/get_profile_spec.rb	/^    context 'when the user is authenticated' do$/;"	c
+when the user is not authenticated	spec/graphql/mutations/users/update_profile_spec.rb	/^    context 'when the user is not authenticated' do$/;"	c
+when the user is not authenticated	spec/graphql/queries/users/get_profile_spec.rb	/^    context 'when the user is not authenticated' do$/;"	c
+when user ID exists	spec/interactors/users/get_profile_spec.rb	/^    context 'when user ID exists' do$/;"	c
+when user does not exist	spec/interactors/users/login_spec.rb	/^    context 'when user does not exist' do$/;"	c
+when valid request	spec/interactors/authorize_api_request_spec.rb	/^    context 'when valid request' do$/;"	c

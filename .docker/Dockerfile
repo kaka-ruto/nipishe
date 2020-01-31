@@ -1,7 +1,7 @@
 # Source: https://evilmartians.com/chronicles/ruby-on-whales-docker-for-ruby-rails-development
 
 ARG RUBY_VERSION
-FROM ruby:$RUBY_VERSION
+FROM ruby:$RUBY_VERSION-slim-buster
 
 ARG PG_MAJOR
 ARG BUNDLER_VERSION
@@ -31,7 +31,7 @@ ENV BUNDLE_APP_CONFIG=$BUNDLE_PATH \
   BUNDLE_BIN=$BUNDLE_PATH/bin
 ENV PATH /app/bin:$BUNDLE_BIN:$PATH
 
-# Upgrade RubyGems and install required Bundler version 
+# Upgrade RubyGems and install required Bundler version
 RUN gem update --system && \
     gem install bundler:$BUNDLER_VERSION
 
