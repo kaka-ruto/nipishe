@@ -40,6 +40,8 @@ gem 'action_policy-graphql', '~> 0.1'
 
 # API
 gem 'graphql'
+# GraphiQL query editor for Rails
+gem "graphiql-rails"
 
 # Error handling
 gem 'graphql-errors'

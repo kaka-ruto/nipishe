@@ -1,4 +1,4 @@
-version: '3.4'
+version: '2.4'
 
 services:
   app: &app
@@ -33,8 +33,8 @@ services:
       - MALLOC_ARENA_MAX=2
       - WEB_CONCURRENCY=${WEB_CONCURRENCY:-1}
     depends_on:
-      - postgres:
-          condition: service_healthy
+      postgres:
+        condition: service_healthy
 
   runner:
     <<: *backend
@@ -58,7 +58,7 @@ services:
     environment:
       - PSQL_HISTFILE=/root/log/.psql_history
     ports:
-      - '5442:5432'
+      - 5432
     healthcheck:
       test: pg_isready -U postgres -h 127.0.0.1
       interval: 5s
