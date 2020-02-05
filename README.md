@@ -20,7 +20,7 @@ Rails -v 5.2.1
 
 A step by step series of examples that tell you how to get your development environment up and running
 
-## Without Docker / The Normal Rails Way
+## Without Docker / The Normal Rails Way (Preferred for development)
 
 Install Postgresql
 
@@ -34,7 +34,21 @@ Clone the project
 git clone https://github.com/borenho/nipishe.git
 ```
 
-Change directory (cd) into `nipishe` and set up your environment:
+Open your `/etc/hosts` file
+
+```
+sudo vim /etc/hosts
+```
+
+Map your machine's Postgres db host `localhost` to docker's db host `postgres`, which we
+have defined in `docker-compose.yml` and referenced in `config/database.yml`
+
+```
+# /etc/hosts
+127.0.0.1   postgres
+```
+
+Change directory (cd) into `nipishe` and set up your development environment:
 
 ```
 bin/setup
@@ -45,6 +59,8 @@ Start the Rails server
 ```
 bin/rails server
 ```
+
+Open the application at http://localhost:3000
 
 ## With Docker
 Docker will allow us to containerize our app into a light-weight, stand-alone
@@ -107,11 +123,7 @@ Now run the sweet Rails app
 docker-compose up rails
 ```
 
-Open the application
-
-```
-http://localhost:3000
-```
+Open the application at http://localhost:3000
 
 To use the GraphiQL web interface make sure you have a file at `app/assets/config/manifest.js` with the following content:
 
