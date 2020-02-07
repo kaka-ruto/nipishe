@@ -7,30 +7,22 @@ module Mutations
       argument :params, Types::Inputs::Users::Registration, required: true
 
       field :user, Types::Objects::Users::User, null: true
-      field :errors, [String], null: false
+      field :auth_token, String, null: true
+      field :errors, [String], null: true
 
       def resolve(params:)
-        register_user(params)
-      rescue Interactor::Failure => e
-        OpenStruct.new(
-          user: nil,
-          message: 'Sign Up Unsuccessful',
-          errors: [e.context.error]
-        )
-      end
+        result = ::Users::Register.call(attributes: params)
 
-      private
-
-      def register_user(params)
-        # Namespace to 'Interactors::Users::Register.call!'' for better readability
-        user_object = ::Users::Register.call!(attributes: params)
-
-        OpenStruct.new(
-          user: user_object[:user],
-          auth_token: user_object[:auth_token],
-          message: 'Successful Sign Up',
-          errors: []
-        )
+        if result.success?
+          {
+            user: result.user,
+            auth_token: result.auth_token
+          }
+        else
+          {
+            errors: [result.context.error]
+          }
+        end
       end
     end
   end

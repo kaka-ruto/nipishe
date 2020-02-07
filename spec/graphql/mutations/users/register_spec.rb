@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Mutations::Users::Register, type: :request do
-  subject(:sign_up) do
+  subject(:execute_mutation) do
     NipisheSchema.execute(query_string, variables: variables)
   end
 
@@ -19,19 +19,23 @@ RSpec.describe Mutations::Users::Register, type: :request do
   describe '.resolve' do
     context 'when all fields are provided correctly' do
       it 'creates a new user' do
-        expect { sign_up }.to change(User, :count).by(1)
+        expect { execute_mutation }.to change(User, :count).by(1)
       end
 
       it 'returns the created user' do
-        expect(sign_up['data']['register']['user']).not_to be_nil
+        result = execute_mutation
+
+        data = result['data']['register']
+
+        expect(data['user']).not_to be_nil
       end
 
-      it 'returns an auth token' do
-        expect(sign_up['data']['register']['auth_token']).not_to be_nil
-      end
+      it 'returns the auth token' do
+        result = execute_mutation
 
-      it 'returns a success message' do
-        expect(sign_up['data']['register']['message']).to eq('Successful Sign Up')
+        data = result['data']['register']
+
+        expect(data['authToken']).not_to be_nil
       end
     end
 
@@ -48,7 +52,7 @@ RSpec.describe Mutations::Users::Register, type: :request do
       end
 
       it 'returns a sign up unsuccessful message' do
-        expect(sign_up['data']['register']['message']).to eq('Sign Up Unsuccessful')
+        expect(execute_mutation['data']['register']['message']).to eq('Sign Up Unsuccessful')
       end
     end
   end
@@ -62,6 +66,7 @@ RSpec.describe Mutations::Users::Register, type: :request do
             lastName
             email
           }
+          authToken
           errors
         }
       }
