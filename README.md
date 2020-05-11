@@ -28,11 +28,34 @@ Install Postgresql
 brew install postgresql
 ```
 
-Clone the project
+Clone the project to your own directory, eg `project_z`
 
 ```
-git clone https://github.com/borenho/nipishe.git
+git clone https://github.com/borenho/nipishe.git project_z
 ```
+
+Use `sed` to find and replace all appearances of `Nipishe` to `Project_Z`, for example.
+
+If you're on `zsh`, the following command will work
+
+```
+sed -i 's/NipisheSchema/ProjectZSchema/g' **/*.rb(D.)
+sed -i 's/Nipishe/ProjectZ/g' **/*.rb(D.)
+```
+
+You can read more about search and replacing with sed here - https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files
+
+Please crosscheck manually if there are still appearances of Nipishe or NipisheSchem and rename appropriately.
+
+You'll also find that there are, for example database names, that start with `nipishe_development`. Find and replace those manually too, they are few.
+
+If you check origins, you'll find that they point to `https://github.com/kaka-ruto/nipishe.git` or `git@github.com:kaka-ruto/nipishe.git`, plase change them to your own with the following
+
+```
+git remote set-url git@github.com:YOUR-USERNAME/YOUR-REPO.git
+```
+
+Confirm it's been correctly set with `git remote -v`
 
 Open your `/etc/hosts` file
 
@@ -163,4 +186,3 @@ Todo: Add notes about how to deploy this on a live system
 ### License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
