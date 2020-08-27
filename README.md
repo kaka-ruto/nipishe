@@ -45,6 +45,8 @@ sed -i 's/Nipishe/ProjectZ/g' **/*.rb(D.)
 
 You can read more about search and replacing with sed here - https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files
 
+If you're using Vim, I found this helpful https://vi.stackexchange.com/questions/2776/vim-search-replace-all-files-in-current-project-folder
+
 Please crosscheck manually if there are still appearances of Nipishe or NipisheSchem and rename appropriately.
 
 You'll also find that there are, for example database names, that start with `nipishe_development`. Find and replace those manually too, they are few.
